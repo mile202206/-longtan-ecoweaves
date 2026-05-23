@@ -166,5 +166,12 @@
         "desc": "即兴演奏"
       }
     ]
+  },
+  "page_views": {
+    "music_innovation": 7,
+    "creative": 5,
+    "offline_space": 7,
+    "index": 10,
+    "heritage": 9
   }
 }
