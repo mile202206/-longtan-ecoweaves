@@ -1,0 +1,11 @@
+# 让 GitHub Linguist 正确识别语言占比
+# 避免 Jinja2 模板 (.html) 被误算为 HTML 主力语言
+
+*.html linguist-vendored
+*.html linguist-language=Jinja
+*.css linguist-language=CSS
+*.js linguist-language=JavaScript
+*.py linguist-language=Python
+
+# 不计入统计的文件
+static/js/main.js linguist-generated=true
