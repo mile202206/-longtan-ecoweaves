@@ -3,126 +3,196 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>登录 · 龙潭非遗平台后台</title>
+  <title>后台登录 · 龙潭EcoWeaves</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
   <style>
-    /* ============ 全局变量 ============ */
-    :root {
-      --gold-wall: #C8964A;
-      --creek:     #5B9A8E;
-      --forest:     #4A7C59;
-      --bg:        #FAF8F5;
-      --bg-card:   #FFFFFF;
-      --text:      #2C2C2C;
-      --text-sec:  #6B6B6B;
-      --text-light:#A0A0A0;
-      --error:     #C45B5A;
-      --shadow:    0 8px 32px rgba(0,0,0,0.08);
-      --radius:    14px;
-    }
-
+    /* ============ 登录页专属 ============ */
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: 'Inter', 'Noto Serif SC', serif;
-      background: var(--bg);
-      color: var(--text);
+      background: var(--bg-base);
+      color: var(--text-primary);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      position: relative;
     }
 
-    /* ============ 山水背景 ============ */
+    /* ============ SVG 山水背景（复用首页动画） ============ */
     .login-bg {
       position: fixed;
       inset: 0;
       z-index: 0;
-      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
     }
-    .login-bg svg { width: 100%; height: 100%; display: block; }
+    .login-bg svg {
+      width: 100%;
+      max-width: 960px;
+      height: auto;
+      max-height: 100vh;
+      opacity: 0.75;
+    }
+
+    /* ============ 顶部导航（融入系统） ============ */
+    .login-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .login-nav-brand {
+      font-family: var(--font-cn, 'Noto Serif SC'), serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: 2px;
+    }
+    .login-nav-link {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .login-nav-link:hover { color: var(--creek); }
 
     /* ============ 登录卡片 ============ */
     .login-card {
       position: relative;
       z-index: 1;
-      width: 420px;
-      background: var(--bg-card);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 48px 40px 40px;
-      animation: cardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+      width: 440px;
+      background: rgba(254, 251, 245, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 18px;
+      box-shadow: 0 8px 40px rgba(45,52,54,0.10), 0 2px 8px rgba(45,52,54,0.04);
+      border: 1px solid var(--border-subtle);
+      padding: 44px 40px 36px;
+      animation: cardIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
     @keyframes cardIn {
-      from { opacity: 0; transform: translateY(24px) scale(0.97); }
+      from { opacity: 0; transform: translateY(20px) scale(0.96); }
       to   { opacity: 1; transform: translateY(0)    scale(1);    }
     }
 
-    .login-brand {
+    /* ============ 标题区（首页艺术字风格） ============ */
+    .login-label {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: var(--creek);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      font-weight: 500;
       text-align: center;
-      margin-bottom: 36px;
     }
-    .login-brand-icon {
-      width: 56px;
-      height: 56px;
-      margin: 0 auto 16px;
-      background: linear-gradient(135deg, var(--gold-wall), var(--creek));
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .login-brand-icon svg { width: 30px; height: 30px; }
-    .login-brand h1 {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 1.35rem;
+    .login-title {
+      font-family: var(--font-cn, 'Noto Serif SC'), serif;
+      font-size: 2.2rem;
       font-weight: 700;
-      color: var(--text);
-      letter-spacing: 0.02em;
+      color: var(--text-primary);
+      line-height: 1.2;
+      letter-spacing: 3px;
+      text-align: center;
+      margin-bottom: 0;
     }
-    .login-brand p {
+    .login-title span {
+      color: var(--wall);
+    }
+    .login-subtitle {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--creek);
+      margin-top: 8px;
+      margin-bottom: 8px;
+      font-style: italic;
+      opacity: 0.8;
+      text-align: center;
+    }
+
+    /* ============ 默认账号提示 ============ */
+    .login-hint {
+      margin: 24px auto 20px;
+      padding: 12px 16px;
+      background: var(--creek-soft);
+      border: 1px solid rgba(91,154,142,0.12);
+      border-radius: 10px;
+      text-align: center;
+    }
+    .login-hint-label {
+      font-size: 0.65rem;
+      letter-spacing: 2px;
+      color: var(--creek);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .login-hint-row {
       font-size: 0.82rem;
-      color: var(--text-light);
-      margin-top: 6px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .login-hint-row code {
+      font-family: 'Inter', monospace;
+      background: rgba(255,255,255,0.7);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      color: var(--wall);
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     /* ============ 表单 ============ */
-    .login-form { display: flex; flex-direction: column; gap: 20px; }
+    .login-form { display: flex; flex-direction: column; gap: 16px; }
 
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
     .form-group label {
-      font-size: 0.82rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      color: var(--text-sec);
-      letter-spacing: 0.03em;
+      color: var(--text-secondary);
+      letter-spacing: 0.04em;
     }
     .form-group input {
       width: 100%;
-      padding: 12px 16px;
-      font-size: 0.95rem;
+      padding: 11px 15px;
+      font-size: 0.93rem;
       font-family: inherit;
-      color: var(--text);
-      background: var(--bg);
+      color: var(--text-primary);
+      background: var(--bg-base);
       border: 1.5px solid #E8E4DF;
       border-radius: 10px;
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .form-group input::placeholder { color: var(--text-light); }
+    .form-group input::placeholder { color: var(--text-muted); }
     .form-group input:focus {
       border-color: var(--creek);
-      box-shadow: 0 0 0 3px rgba(91,154,142,0.12);
+      box-shadow: 0 0 0 3px var(--creek-soft);
     }
 
     .login-btn {
       margin-top: 4px;
       width: 100%;
-      padding: 13px;
+      padding: 12px;
       font-size: 0.95rem;
       font-weight: 600;
       font-family: inherit;
+      letter-spacing: 1px;
       color: #fff;
       background: linear-gradient(135deg, var(--forest), var(--creek));
       border: none;
@@ -130,7 +200,7 @@
       cursor: pointer;
       transition: opacity 0.2s, transform 0.15s;
     }
-    .login-btn:hover  { opacity: 0.92; transform: translateY(-1px); }
+    .login-btn:hover  { opacity: 0.93; transform: translateY(-1px); }
     .login-btn:active { transform: translateY(0); }
 
     /* ============ 错误提示 ============ */
@@ -138,7 +208,7 @@
       display: none;
       padding: 10px 14px;
       font-size: 0.82rem;
-      color: var(--error);
+      color: #C45B5A;
       background: #FDF2F2;
       border: 1px solid #F5D5D5;
       border-radius: 10px;
@@ -153,67 +223,143 @@
       80%     { transform: translateX(3px); }
     }
 
-    /* ============ 底注 ============ */
+    /* ============ 底部链接 ============ */
     .login-footer {
+      margin-top: 24px;
       text-align: center;
-      margin-top: 28px;
-      font-size: 0.75rem;
-      color: var(--text-light);
+      font-size: 0.73rem;
+      color: var(--text-muted);
     }
+    .login-footer a {
+      color: var(--creek);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .login-footer a:hover { color: var(--forest); }
 
     /* ============ 响应式 ============ */
-    @media (max-width: 480px) {
-      .login-card { width: 92vw; padding: 36px 24px 32px; }
+    @media (max-width: 500px) {
+      .login-card { width: 92vw; padding: 36px 24px 28px; }
+      .login-title { font-size: 1.8rem; }
+      .login-nav { padding: 12px 16px; gap: 16px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 山水背景 SVG -->
+  <!-- 山水 SVG 背景（复用首页 Hero 插画） -->
   <div class="login-bg">
-    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-      <!-- 天空渐变 -->
-      <defs>
-        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stop-color="#E8E0D4"/>
-          <stop offset="100%" stop-color="#FAF8F5"/>
-        </linearGradient>
-        <linearGradient id="mountain-far" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stop-color="#C8D8D0" stop-opacity="0.45"/>
-          <stop offset="100%" stop-color="#C8D8D0" stop-opacity="0.08"/>
-        </linearGradient>
-        <linearGradient id="mountain-mid" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stop-color="#A8BFB4" stop-opacity="0.35"/>
-          <stop offset="100%" stop-color="#A8BFB4" stop-opacity="0.05"/>
-        </linearGradient>
-      </defs>
-      <rect width="1440" height="900" fill="url(#sky)"/>
+    <svg viewBox="0 0 480 420" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+      <!-- 云雾 -->
+      <path class="svganim-cloud" d="M30 120 Q80 110 130 118 Q180 125 220 115" stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="none"/>
+      <path class="svganim-cloud" d="M200 90 Q260 82 320 88 Q370 94 400 86" stroke="rgba(255,255,255,0.12)" stroke-width="0.8" fill="none"/>
+      <ellipse class="svganim-cloud-slow" cx="160" cy="165" rx="60" ry="8" fill="rgba(255,255,255,0.06)"/>
       <!-- 远山 -->
-      <path d="M0 900 L0 620 Q180 480 360 560 Q500 440 640 520 Q780 400 960 500 Q1100 420 1260 540 Q1350 500 1440 550 L1440 900 Z" fill="url(#mountain-far)"/>
+      <path class="svganim-mountain-1" d="M0 180 Q40 155 80 168 Q120 140 170 160 Q210 145 250 155 Q290 138 340 150 Q380 142 420 148 Q460 135 480 145 L480 420 L0 420Z" fill="rgba(91,154,142,0.07)" stroke="rgba(91,154,142,0.05)" stroke-width="0.5"/>
+      <path class="svganim-mountain-2" d="M0 210 Q50 185 100 198 Q150 175 200 192 Q240 178 290 188 Q340 172 390 183 Q430 176 480 180 L480 420 L0 420Z" fill="rgba(91,154,142,0.12)" stroke="rgba(91,154,142,0.08)" stroke-width="0.8"/>
+      <path class="svganim-mountain-3" d="M0 245 Q60 220 120 235 Q170 215 230 228 Q280 210 340 222 Q390 212 440 218 Q465 210 480 215 L480 420 L0 420Z" fill="rgba(74,124,89,0.10)" stroke="rgba(74,124,89,0.07)" stroke-width="0.8"/>
+      <!-- 松树（远景） -->
+      <g class="svganim-pine-far-1">
+        <line x1="90" y1="230" x2="90" y2="195" stroke="rgba(74,124,89,0.18)" stroke-width="1.5"/>
+        <ellipse cx="90" cy="192" rx="10" ry="14" fill="rgba(74,124,89,0.10)"/>
+      </g>
+      <g class="svganim-pine-far-2">
+        <line x1="130" y1="238" x2="130" y2="200" stroke="rgba(74,124,89,0.15)" stroke-width="1.2"/>
+        <ellipse cx="130" cy="197" rx="8" ry="12" fill="rgba(74,124,89,0.08)"/>
+      </g>
+      <g class="svganim-pine-far-3">
+        <line x1="55" y1="240" x2="55" y2="208" stroke="rgba(74,124,89,0.12)" stroke-width="1"/>
+        <ellipse cx="55" cy="205" rx="7" ry="10" fill="rgba(74,124,89,0.07)"/>
+      </g>
       <!-- 近山 -->
-      <path d="M0 900 L0 700 Q200 600 400 680 Q550 620 700 670 Q850 600 1000 660 Q1150 620 1300 690 Q1380 660 1440 680 L1440 900 Z" fill="url(#mountain-mid)"/>
-      <!-- 装饰圆点（模拟光斑） -->
-      <circle cx="200" cy="180" r="80" fill="#C8964A" opacity="0.04"/>
-      <circle cx="1200" cy="140" r="60" fill="#5B9A8E" opacity="0.04"/>
+      <path class="svganim-mountain-4" d="M0 280 Q70 258 140 272 Q200 255 270 266 Q330 252 390 260 Q440 250 480 258 L480 420 L0 420Z" fill="rgba(74,124,89,0.14)" stroke="rgba(74,124,89,0.10)" stroke-width="1"/>
+      <!-- 溪流 -->
+      <path class="svganim-creek-upper" d="M0 340 Q40 335 80 338 Q120 342 160 336 Q200 330 240 335 Q280 340 320 333 Q360 328 400 334 Q440 338 480 332" stroke="rgba(91,154,142,0.20)" stroke-width="1.2" fill="none"/>
+      <path class="svganim-creek-lower" d="M0 348 Q50 344 100 347 Q150 350 200 345 Q250 340 300 346 Q350 350 400 344 Q440 340 480 345" stroke="rgba(91,154,142,0.10)" stroke-width="0.8" fill="none"/>
+      <!-- 最近山 -->
+      <path class="svganim-mountain-5" d="M0 310 Q60 295 130 305 Q200 290 280 298 Q350 288 420 294 Q460 290 480 292 L480 420 L0 420Z" fill="rgba(45,52,54,0.06)"/>
+      <!-- 石拱桥 -->
+      <path d="M180 338 Q200 318 220 338" stroke="rgba(45,52,54,0.18)" stroke-width="1.5" fill="rgba(91,154,142,0.06)"/>
+      <line x1="180" y1="338" x2="175" y2="348" stroke="rgba(45,52,54,0.12)" stroke-width="1"/>
+      <line x1="220" y1="338" x2="225" y2="348" stroke="rgba(45,52,54,0.12)" stroke-width="1"/>
+      <!-- 近景松树 -->
+      <g class="svganim-pine-near-1">
+        <line x1="410" y1="340" x2="410" y2="260" stroke="rgba(45,52,54,0.20)" stroke-width="2"/>
+        <path d="M410 265 L395 280 L405 278 L392 295 L403 293 L388 310" stroke="rgba(74,124,89,0.22)" stroke-width="1" fill="none"/>
+        <path d="M410 270 L425 285 L415 283 L428 298 L417 296 L430 312" stroke="rgba(74,124,89,0.20)" stroke-width="1" fill="none"/>
+        <ellipse cx="410" cy="258" rx="12" ry="16" fill="rgba(74,124,89,0.10)"/>
+      </g>
+      <g class="svganim-pine-near-2">
+        <line x1="445" y1="345" x2="445" y2="278" stroke="rgba(45,52,54,0.15)" stroke-width="1.5"/>
+        <ellipse cx="445" cy="275" rx="9" ry="13" fill="rgba(74,124,89,0.08)"/>
+      </g>
+      <!-- 古厝群 -->
+      <path d="M300 305 L350 305 L358 300 L352 305 L365 305 L370 302 L367 305 L380 305" stroke="rgba(45,52,54,0.22)" stroke-width="1.2" fill="none"/>
+      <rect x="310" y="305" width="60" height="35" rx="1" fill="rgba(45,52,54,0.12)"/>
+      <rect x="305" y="300" width="70" height="7" rx="1" fill="rgba(45,52,54,0.16)"/>
+      <line x1="305" y1="300" x2="340" y2="292" stroke="rgba(45,52,54,0.18)" stroke-width="1"/>
+      <line x1="375" y1="300" x2="340" y2="292" stroke="rgba(45,52,54,0.18)" stroke-width="1"/>
+      <path d="M305 300 Q300 297 296 294" stroke="rgba(45,52,54,0.20)" stroke-width="1" fill="none"/>
+      <path d="M375 300 Q380 297 384 294" stroke="rgba(45,52,54,0.20)" stroke-width="1" fill="none"/>
+      <rect x="325" y="315" width="10" height="20" rx="0.5" fill="rgba(200,150,74,0.22)"/>
+      <rect x="345" y="315" width="8" height="8" rx="0.5" fill="rgba(200,150,74,0.16)"/>
+      <line x1="349" y1="315" x2="349" y2="323" stroke="rgba(200,150,74,0.10)" stroke-width="0.5"/>
+      <line x1="345" y1="319" x2="353" y2="319" stroke="rgba(200,150,74,0.10)" stroke-width="0.5"/>
+      <rect x="268" y="315" width="35" height="25" rx="1" fill="rgba(45,52,54,0.09)"/>
+      <rect x="264" y="311" width="43" height="6" rx="1" fill="rgba(45,52,54,0.12)"/>
+      <path d="M264 311 L285 304 L306 311" stroke="rgba(45,52,54,0.14)" stroke-width="0.8" fill="none"/>
+      <path d="M264 311 Q260 308 257 306" stroke="rgba(45,52,54,0.15)" stroke-width="0.8" fill="none"/>
+      <path d="M306 311 Q310 308 313 306" stroke="rgba(45,52,54,0.15)" stroke-width="0.8" fill="none"/>
+      <!-- 暖阳 -->
+      <circle class="svganim-sun-outer" cx="400" cy="75" r="50" fill="rgba(200,150,74,0.14)"/>
+      <circle class="svganim-sun-mid" cx="400" cy="75" r="32" fill="rgba(200,150,74,0.10)"/>
+      <circle class="svganim-sun-inner" cx="400" cy="75" r="16" fill="rgba(200,150,74,0.08)"/>
+      <!-- 酒坛 -->
+      <ellipse class="svganim-jar-mouth" cx="250" cy="338" rx="8" ry="3.5" fill="rgba(200,150,74,0.22)"/>
+      <path class="svganim-jar-body" d="M242 338 L244 325 Q244 320 250 320 Q256 320 256 325 L258 338" stroke="rgba(200,150,74,0.22)" stroke-width="1.2" fill="rgba(200,150,74,0.08)"/>
+      <ellipse class="svganim-jar-rim" cx="250" cy="320" rx="7" ry="2.5" stroke="rgba(200,150,74,0.18)" stroke-width="0.8" fill="rgba(200,150,74,0.10)"/>
+      <!-- 竹子 -->
+      <g class="svganim-bamboo-1">
+        <line x1="30" y1="345" x2="28" y2="220" stroke="rgba(74,124,89,0.12)" stroke-width="1.2"/>
+        <path d="M28 240 Q22 235 18 228" stroke="rgba(74,124,89,0.10)" stroke-width="0.6" fill="none"/>
+        <path d="M28 255 Q35 250 40 243" stroke="rgba(74,124,89,0.10)" stroke-width="0.6" fill="none"/>
+        <path d="M28 270 Q21 265 16 258" stroke="rgba(74,124,89,0.10)" stroke-width="0.6" fill="none"/>
+      </g>
+      <g class="svganim-bamboo-2">
+        <line x1="45" y1="345" x2="43" y2="235" stroke="rgba(74,124,89,0.10)" stroke-width="1"/>
+        <path d="M43 255 Q48 250 53 244" stroke="rgba(74,124,89,0.08)" stroke-width="0.6" fill="none"/>
+        <path d="M43 275 Q37 270 32 264" stroke="rgba(74,124,89,0.08)" stroke-width="0.6" fill="none"/>
+      </g>
     </svg>
   </div>
 
+  <!-- 顶部导航（融入系统） -->
+  <nav class="login-nav">
+    <a href="/" class="login-nav-brand">龙潭 · EcoWeaves</a>
+    <a href="/" class="login-nav-link">首页</a>
+    <a href="/heritage" class="login-nav-link">传统非遗</a>
+    <a href="/music-innovation" class="login-nav-link">现代艺术</a>
+  </nav>
+
   <!-- 登录卡片 -->
   <div class="login-card">
-    <div class="login-brand">
-      <div class="login-brand-icon">
-        <!-- 山形图标 -->
-        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 28 L16 6 L28 28 Z" fill="#fff" opacity="0.9"/>
-          <path d="M10 28 L16 12 L22 28 Z" fill="#fff" opacity="0.5"/>
-        </svg>
+    <div class="login-label">ADMINISTRATOR ACCESS</div>
+    <h1 class="login-title">
+      龙潭<span>后台</span>
+    </h1>
+    <div class="login-subtitle">Longtan Village · Operations</div>
+
+    <!-- 默认账号提示 -->
+    <div class="login-hint">
+      <div class="login-hint-label">演示账号</div>
+      <div class="login-hint-row">
+        账号：<code>ecoweaves</code><br>
+        密码：<code>Longtan@2024</code>
       </div>
-      <h1>龙潭 · 非遗平台</h1>
-      <p>后台管理系统</p>
     </div>
 
     {% if error %}
-    <div class="login-error show" id="login-error">{{ error }}</div>
+    <div class="login-error show">{{ error }}</div>
     {% endif %}
     {% if not error %}
     <div class="login-error" id="login-error"></div>
@@ -222,16 +368,18 @@
     <form class="login-form" method="POST" action="/login">
       <div class="form-group">
         <label for="username">账号</label>
-        <input type="text" id="username" name="username" placeholder="请输入账号" required autofocus>
+        <input type="text" id="username" name="username" placeholder="输入账号" required autofocus>
       </div>
       <div class="form-group">
         <label for="password">密码</label>
-        <input type="password" id="password" name="password" placeholder="请输入密码" required>
+        <input type="password" id="password" name="password" placeholder="输入密码" required>
       </div>
       <button type="submit" class="login-btn">登&nbsp;&nbsp;录</button>
     </form>
 
-    <div class="login-footer">屏南龙潭非遗数字化平台 · 运营后台</div>
+    <div class="login-footer">
+      屏南龙潭非遗数字化平台 · <a href="/">返回首页</a>
+    </div>
   </div>
 
 </body>
