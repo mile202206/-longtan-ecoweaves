@@ -222,26 +222,6 @@
       flex-shrink: 0;
     }
 
-    /* 媒体图片网格 */
-    .media-image-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 28px;
-    }
-    .media-image-grid .image-item {
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      aspect-ratio: 4/3;
-      background: var(--bg-elevated);
-    }
-    .media-image-grid .image-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
     /* 媒体画廊标题 */
     .gallery-section-title {
       font-family: var(--font-cn);
@@ -433,9 +413,6 @@
 
     <div class="gallery-section-title">影像档案</div>
 
-    <!-- 动态图片网格 -->
-    <div class="media-image-grid" id="wine-image-gallery"></div>
-
     <div class="media-gallery-grid" id="wine-media-gallery">
       <!-- B站视频：红粬黄酒酿造 -->
       <div class="gallery-video-item fade-in">
@@ -484,9 +461,6 @@
     </p>
 
     <div class="gallery-section-title">影像档案</div>
-
-    <!-- 动态图片网格 -->
-    <div class="media-image-grid" id="opera-image-gallery"></div>
 
     <div class="media-gallery-grid" id="opera-media-gallery">
       <!-- B站视频：四平戏纪录片 -->
@@ -575,16 +549,6 @@
     });
 
     function loadHeritageDynamic() {
-      // 加载黄酒分类图片
-      fetch('/api/uploads?category=wine').then(function(r) { return r.json(); }).then(function(files) {
-        renderImageGrid('wine-image-gallery', files);
-      }).catch(function() {});
-
-      // 加载四平戏分类图片
-      fetch('/api/uploads?category=opera').then(function(r) { return r.json(); }).then(function(files) {
-        renderImageGrid('opera-image-gallery', files);
-      }).catch(function() {});
-
       fetch('/api/heritage').then(function(r) { return r.json(); }).then(function(items) {
         if (!items || items.length === 0) return;
         var wineItems = items.filter(function(i) { return i.category === 'wine'; });
@@ -592,23 +556,6 @@
         renderDynamicList('wine-dynamic', wineItems);
         renderDynamicList('opera-dynamic', operaItems);
       }).catch(function() {});
-    }
-
-    function renderImageGrid(containerId, files) {
-      var container = document.getElementById(containerId);
-      if (!container || !files || files.length === 0) return;
-      var html = '';
-      files.forEach(function(file) {
-        if (file.type !== 'image') return;
-        html += '<div class="image-item fade-in">';
-        html += '<img src="' + escapeHtml(file.url) + '" alt="' + escapeHtml(file.description || file.original_name || '') + '" loading="lazy">';
-        html += '</div>';
-      });
-      container.innerHTML = html;
-      var obs = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-      }, { threshold: 0.1 });
-      container.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
     }
 
     function renderDynamicList(containerId, items) {
