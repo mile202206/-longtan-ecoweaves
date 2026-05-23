@@ -42,33 +42,19 @@
       opacity: 0.75;
     }
 
-    /* ============ 顶部导航（融入系统） ============ */
-    .login-nav {
+    /* ============ 返回首页入口 ============ */
+    .back-home {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 20px;
+      left: 28px;
       z-index: 10;
-      padding: 16px 28px;
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-    .login-nav-brand {
-      font-family: var(--font-cn, 'Noto Serif SC'), serif;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--text-primary);
-      text-decoration: none;
-      letter-spacing: 2px;
-    }
-    .login-nav-link {
       font-size: 0.78rem;
       color: var(--text-muted);
       text-decoration: none;
       transition: color 0.2s;
+      font-family: 'Inter', 'Noto Serif SC', serif;
     }
-    .login-nav-link:hover { color: var(--creek); }
+    .back-home:hover { color: var(--creek); }
 
     /* ============ 登录卡片 ============ */
     .login-card {
@@ -241,7 +227,6 @@
     @media (max-width: 500px) {
       .login-card { width: 92vw; padding: 36px 24px 28px; }
       .login-title { font-size: 1.8rem; }
-      .login-nav { padding: 12px 16px; gap: 16px; }
     }
   </style>
 </head>
@@ -333,13 +318,8 @@
     </svg>
   </div>
 
-  <!-- 顶部导航（融入系统） -->
-  <nav class="login-nav">
-    <a href="/" class="login-nav-brand">龙潭 · EcoWeaves</a>
-    <a href="/" class="login-nav-link">首页</a>
-    <a href="/heritage" class="login-nav-link">传统非遗</a>
-    <a href="/music-innovation" class="login-nav-link">现代艺术</a>
-  </nav>
+  <!-- 返回首页 -->
+  <a href="/" class="back-home">← 返回首页</a>
 
   <!-- 登录卡片 -->
   <div class="login-card">
