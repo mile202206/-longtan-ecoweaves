@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -800,11 +800,7 @@
           fetch('/api/uploads/' + id, { method: 'DELETE' })
             .then(function(r) { return r.json(); })
             .then(function(data) {
-              if (data.success) {
-                showToast('素材已删除');
-                loadUploads();
-                loadDashboard();
-              }
+              if (data.success) { showToast('素材已删除'); loadUploads(); loadDashboard(); }
             });
         }
       });
