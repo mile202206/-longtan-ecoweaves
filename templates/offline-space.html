@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>线下空间 · 龙潭非遗平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    /* ========== 线下空间页 ========== */
+
+    /* Hero 区域 */
+    .space-hero {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: calc(var(--nav-height) + 48px) 28px 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      position: relative;
+    }
+
+    .space-hero-left {
+      position: relative;
+      z-index: 1;
+      padding-top: 20px;
+    }
+
+    .space-hero-label {
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      color: var(--forest);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .space-hero-title {
+      font-family: var(--font-cn);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .space-hero-title em {
+      font-style: normal;
+      color: var(--forest);
+    }
+
+    .space-hero-en {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.2rem;
+      color: var(--forest);
+      font-style: italic;
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    .space-hero-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 480px;
+    }
+
+    /* 右侧插画 */
+    .space-illustration {
+      position: relative;
+      width: 100%;
+      height: 320px;
+    }
+
+    .space-illustration svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* 空间板块 */
+    .space-block {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 16px 28px 0;
+      position: relative;
+    }
+
+    .section-number-sp {
+      font-family: var(--font-cn);
+      font-size: 5rem;
+      font-weight: 700;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 8px;
+      opacity: 0.5;
+    }
+
+    .block-header-sp {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .block-title-sp {
+      font-family: var(--font-cn);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 2px;
+    }
+
+    .block-sub-sp {
+      font-size: 0.68rem;
+      color: var(--forest);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .block-intro-sp {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      max-width: 560px;
+      margin-bottom: 32px;
+    }
+
+    /* 空间卡片网格 */
+    .space-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+      margin-bottom: 40px;
+    }
+
+    .space-card {
+      background: var(--bg-elevated);
+      border-radius: 18px;
+      padding: 28px 22px 24px;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .space-card:hover {
+      box-shadow: 0 4px 24px rgba(74,124, 89, 0.06);
+      transform: translateY(-2px);
+    }
+
+    .space-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+
+    .space-dot.wall { background: var(--wall); }
+    .space-dot.creek { background: var(--creek); }
+    .space-dot.forest { background: var(--forest); }
+
+    .space-card h4 {
+      font-family: var(--font-cn);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      flex-shrink: 0;
+    }
+
+    .space-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+
+    .space-card-img {
+      width: 100%;
+      height: 140px;
+      border-radius: 12px 12px 0 0;
+      overflow: hidden;
+      margin: -28px -22px 16px;
+      width: calc(100% + 44px);
+    }
+
+    .space-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .space-card:hover .space-card-img img {
+      transform: scale(1.06);
+    }
+
+    .space-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-radius: 4px;
+      margin-top: 12px;
+      align-self: flex-start;
+    }
+
+    .space-tag.cafe { background: #fce4ec; color: #c62828; }
+    .space-tag.book { background: #f3e5f5; color: #6a1b9a; }
+    .space-tag.art { background: #e3f2fd; color: #1565c0; }
+    .space-tag.bar { background: #e8f5e9; color: #2e7d32; }
+    .space-tag.food { background: #fff3e0; color: #e65100; }
+    .space-tag.stay { background: #e0f7fa; color: #00838f; }
+
+    /* 体验活动 */
+    .experience-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+      margin-bottom: 40px;
+    }
+
+    .experience-card {
+      background: var(--bg-elevated);
+      border-radius: 18px;
+      padding: 28px 24px;
+      transition: var(--transition);
+      border-left: 3px solid var(--forest);
+    }
+
+    .experience-card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .experience-card h4 {
+      font-family: var(--font-cn);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .experience-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* 图片画廊 */
+    .space-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+      margin-bottom: 16px;
+    }
+
+    .space-gallery-item {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .space-gallery-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(74, 124, 89, 0.12);
+    }
+
+    .space-gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .space-gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .space-gallery-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 10px 12px 8px;
+      background: linear-gradient(transparent, rgba(45, 52, 54, 0.65));
+      color: #fff;
+      font-size: 0.72rem;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 960px) {
+      .space-gallery { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .space-gallery { grid-template-columns: 1fr; }
+    }
+
+    /* 响应式 */
+    @media (max-width: 960px) {
+      .space-hero {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .space-illustration { height: 240px; }
+      .space-grid { grid-template-columns: repeat(2, 1fr); }
+      .experience-grid { grid-template-columns: 1fr; }
+      .section-number-sp { font-size: 3.5rem; }
+    }
+
+    @media (max-width: 640px) {
+      .space-hero-title { font-size: 2rem; }
+      .space-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">龙潭 · 非遗</a>
+      <div class="nav-links">
+        <a href="/">首页</a>
+        <a href="/heritage">传统非遗</a>
+        <a href="/music-innovation">现代艺术</a>
+        <a href="/creative">在地特产</a>
+        <a href="/offline-space" class="active">线下空间</a>
+        <a href="/admin">后台管理</a>
+      </div>
+      <div class="nav-mobile-toggle"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <!-- Hero 区域 -->
+  <header class="space-hero" id="nav-hero">
+    <div class="space-hero-left fade-in">
+      <div class="space-hero-label">OFFLINE SPACE · 线下空间</div>
+      <h1 class="space-hero-title">线下<em>空间</em></h1>
+      <div class="space-hero-en">In Longtan · Where Culture Lives</div>
+      <p class="space-hero-desc">
+        通过15年「老屋认租」模式，上百名新村民入驻龙潭，将濒临倒塌的古民居改造为各具特色的艺术共享空间——黄墙之内，咖啡、画室、书吧、酒吧自然生长。
+      </p>
+    </div>
+    <div class="space-illustration fade-in fade-in-delay-1">
+      <svg viewBox="0 0 480 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 云雾 -->
+        <path class="svganim-cloud" d="M20 70 Q70 63 120 67 Q170 73 210 65" stroke="rgba(255,255,255,0.14)" stroke-width="0.8" fill="none"/>
+        <ellipse class="svganim-cloud-slow" cx="200" cy="95" rx="45" ry="5" fill="rgba(255,255,255,0.04)"/>
+        <!-- 第一层远山 -->
+        <path class="svganim-mountain-1" d="M0 120 Q40 103 80 113 Q130 97 180 109 Q220 100 270 107 Q320 95 370 102 Q420 97 480 100 L480 320 L0 320Z" fill="rgba(74,124,89,0.07)" stroke="rgba(74,124,89,0.04)" stroke-width="0.5"/>
+        <!-- 第二层远山 -->
+        <path class="svganim-mountain-2" d="M0 150 Q50 131 110 142 Q160 125 220 138 Q270 122 330 132 Q380 120 430 126 Q460 120 480 123 L480 320 L0 320Z" fill="rgba(74,124,89,0.10)" stroke="rgba(74,124,89,0.06)" stroke-width="0.7"/>
+        <!-- 远景松树 -->
+        <g class="svganim-pine-far-1">
+        <line x1="80" y1="138" x2="80" y2="108" stroke="rgba(74,124,89,0.13)" stroke-width="1.2"/>
+        <ellipse cx="80" cy="105" rx="8" ry="11" fill="rgba(74,124,89,0.07)"/>
+        </g>
+        <g class="svganim-pine-far-2">
+        <line x1="120" y1="142" x2="120" y2="115" stroke="rgba(74,124,89,0.10)" stroke-width="1"/>
+        <ellipse cx="120" cy="112" rx="7" ry="10" fill="rgba(74,124,89,0.05)"/>
+        </g>
+        <!-- 第三层山 -->
+        <path class="svganim-mountain-3" d="M0 180 Q60 163 130 175 Q190 159 260 169 Q320 156 380 164 Q430 157 480 161 L480 320 L0 320Z" fill="rgba(74,124,89,0.08)" stroke="rgba(74,124,89,0.05)" stroke-width="0.8"/>
+        <!-- 第四层近山 -->
+        <path class="svganim-mountain-4" d="M0 210 Q70 196 150 206 Q220 191 300 201 Q360 189 420 195 Q455 189 480 193 L480 320 L0 320Z" fill="rgba(74,124,89,0.11)" stroke="rgba(74,124,89,0.07)" stroke-width="0.9"/>
+        <!-- 溪流 -->
+        <path class="svganim-creek-upper" d="M0 262 Q50 257 100 260 Q150 264 200 258 Q250 252 300 257 Q350 262 400 256 Q440 252 480 258" stroke="rgba(91,154,142,0.16)" stroke-width="1" fill="none"/>
+        <path class="svganim-creek-lower" d="M0 270 Q60 266 120 269 Q180 272 240 267 Q300 262 360 267 Q410 270 460 265 Q480 263 480 265" stroke="rgba(91,154,142,0.08)" stroke-width="0.6" fill="none"/>
+        <!-- 石板路 -->
+        <path class="svganim-stone-path-1" d="M190 260 L190 320" stroke="rgba(45,52,54,0.09)" stroke-width="0.6" stroke-dasharray="4 3"/>
+        <path class="svganim-stone-path-2" d="M210 256 L215 320" stroke="rgba(45,52,54,0.07)" stroke-width="0.5" stroke-dasharray="3 4"/>
+        <!-- 古厝群 -->
+        <!-- 主屋（咖啡馆） -->
+        <rect x="280" y="228" width="55" height="32" rx="1" fill="rgba(45,52,54,0.12)"/>
+        <rect x="275" y="223" width="65" height="7" rx="1" fill="rgba(45,52,54,0.16)"/>
+        <line x1="275" y1="223" x2="307" y2="215" stroke="rgba(45,52,54,0.16)" stroke-width="0.8"/>
+        <line x1="340" y1="223" x2="307" y2="215" stroke="rgba(45,52,54,0.16)" stroke-width="0.8"/>
+        <path d="M275 223 Q270 220 266 217" stroke="rgba(45,52,54,0.16)" stroke-width="0.8" fill="none"/>
+        <path d="M340 223 Q345 220 349 217" stroke="rgba(45,52,54,0.16)" stroke-width="0.8" fill="none"/>
+        <rect class="svganim-window-glow" x="297" y="237" width="9" height="18" rx="0.5" fill="rgba(200,150,74,0.20)"/>
+        <rect class="svganim-window-split" x="315" y="237" width="7" height="7" rx="0.5" fill="rgba(200,150,74,0.14)"/>
+        <!-- 副屋（画室） -->
+        <rect x="238" y="238" width="35" height="22" rx="1" fill="rgba(45,52,54,0.09)"/>
+        <rect x="234" y="234" width="43" height="6" rx="1" fill="rgba(45,52,54,0.12)"/>
+        <path d="M234 234 L255 227 L276 234" stroke="rgba(45,52,54,0.13)" stroke-width="0.7" fill="none"/>
+        <rect x="248" y="246" width="7" height="7" rx="0.5" fill="rgba(91,154,142,0.12)"/>
+        <!-- 咖啡杯 -->
+        <ellipse cx="190" cy="248" rx="16" ry="4" fill="rgba(200,150,74,0.10)"/>
+        <rect x="174" y="230" width="32" height="18" rx="4" fill="rgba(200,150,74,0.08)"/>
+        <path d="M206 235 Q215 232 212 240" stroke="rgba(200,150,74,0.12)" stroke-width="1.5" fill="none"/>
+        <!-- 蒸汽 -->
+        <path d="M185 225 Q182 214 185 206" stroke="rgba(74,124,89,0.09)" stroke-width="0.8" fill="none"/>
+        <path d="M192 222 Q189 210 192 201" stroke="rgba(74,124,89,0.07)" stroke-width="0.8" fill="none"/>
+        <path d="M198 224 Q195 213 198 205" stroke="rgba(74,124,89,0.05)" stroke-width="0.8" fill="none"/>
+        <!-- 竹林 -->
+        <g class="svganim-bamboo-1">
+        <line x1="30" y1="320" x2="28" y2="190" stroke="rgba(74,124,89,0.09)" stroke-width="1"/>
+        <path d="M28 210 Q22 206 17 200" stroke="rgba(74,124,89,0.07)" stroke-width="0.5" fill="none"/>
+        </g>
+        <g class="svganim-bamboo-2">
+        <line x1="46" y1="320" x2="44" y2="205" stroke="rgba(74,124,89,0.07)" stroke-width="0.8"/>
+        </g>
+        <!-- 暖阳 -->
+        <circle class="svganim-sun-outer" cx="80" cy="50" r="40" fill="rgba(200,150,74,0.09)"/>
+        <circle class="svganim-sun-mid" cx="80" cy="50" r="24" fill="rgba(200,150,74,0.06)"/>
+        <circle class="svganim-sun-inner" cx="80" cy="50" r="11" fill="rgba(200,150,74,0.04)"/>
+      </svg>
+    </div>
+  </header>
+
+  <!-- 板块 01：特色空间 -->
+  <section class="space-block" id="nav-spaces">
+    <div class="block-header-sp fade-in">
+      <div class="section-number-sp">01</div>
+      <h2 class="block-title-sp">特色空间</h2>
+      <span class="block-sub-sp">FEATURED SPACES</span>
+    </div>
+    <p class="block-intro-sp fade-in">
+      每一处空间都由新村民自主策划、出资修缮、独立运营，形成了"一屋一特色"的丰富生态。
+    </p>
+
+    <!-- 空间卡片 -->
+    <div class="space-grid">
+      <!-- 随喜咖啡 -->
+      <div class="space-card fade-in fade-in-delay-1">
+        <div class="space-card-img">
+          <img src="/uploads/space_music.jpg" alt="随喜咖啡">
+        </div>
+        <div class="space-dot wall"></div>
+        <h4>随喜咖啡</h4>
+        <p>龙潭村第一家文创咖啡店，由古民居改造。手冲咖啡配古戏台背景音，是许多游客的"龙潭初体验"。</p>
+        <span class="space-tag cafe">咖啡馆</span>
+      </div>
+      <!-- 村中书吧 -->
+      <div class="space-card fade-in fade-in-delay-2">
+        <div class="space-card-img">
+          <img src="/uploads/space_book.jpg" alt="村中书吧">
+        </div>
+        <div class="space-dot creek"></div>
+        <h4>村中书吧</h4>
+        <p>黄墙之内的安静角落，藏书以艺术、乡村、非遗为主题。提供手冲咖啡，可在这里消磨一整个下午。</p>
+        <span class="space-tag book">书吧</span>
+      </div>
+      <!-- 村民餐馆 -->
+      <div class="space-card fade-in fade-in-delay-2">
+        <div class="space-card-img">
+          <img src="/uploads/space_restaurant.jpg" alt="村民餐馆">
+        </div>
+        <div class="space-dot creek"></div>
+        <h4>村民餐馆</h4>
+        <p>新村民经营的融合料理，食材来自当地农户。黄酒焖鸡、四平戏主题套餐是食客最爱。</p>
+        <span class="space-tag food">餐饮</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 板块 02：体验活动 -->
+  <section class="space-block" id="nav-experience">
+    <div class="block-header-sp fade-in">
+      <div class="section-number-sp">02</div>
+      <h2 class="block-title-sp">体验活动</h2>
+      <span class="block-sub-sp">EXPERIENCE & EVENTS</span>
+    </div>
+    <p class="block-intro-sp fade-in">
+      来到龙潭，不止是"看"——亲手触摸、亲口品尝、亲身参与，让非遗从指尖传入心里。
+    </p>
+
+    <!-- 空间亮点卡片（上图下文） -->
+    <div class="space-grid" style="margin-top:32px;">
+
+      <!-- 随喜咖啡 -->
+      <div class="space-card fade-in fade-in-delay-1">
+        <div class="space-card-img">
+          <img src="/uploads/space_cafe.jpg" alt="随喜咖啡">
+        </div>
+        <div class="space-dot wall"></div>
+        <h4>随喜咖啡</h4>
+        <p>龙潭村第一家文创咖啡店，由古民居改造。手冲咖啡配古戏台背景音，是许多游客的"龙潭初体验"。</p>
+        <span class="space-tag cafe">咖啡馆</span>
+      </div>
+
+      <!-- 山间画室 -->
+      <div class="space-card fade-in fade-in-delay-2">
+        <div class="space-card-img">
+          <img src="/uploads/space_art_show.jpg" alt="山间画室">
+        </div>
+        <div class="space-dot forest"></div>
+        <h4>山间画室</h4>
+        <p>新村民开设的公益画室，免费教村民和孩子画油画。作品线上售卖，收益返还村庄。</p>
+        <span class="space-tag art">画室</span>
+      </div>
+
+      <!-- 古村酒吧 -->
+      <div class="space-card fade-in fade-in-delay-3">
+        <div class="space-card-img">
+          <img src="/uploads/space_wine_artist.jpg" alt="古村酒吧">
+        </div>
+        <div class="space-dot wall"></div>
+        <h4>古村酒吧</h4>
+        <p>酒吧由老酒窖改造，黄酒特调是招牌，常有余兴戏曲表演。</p>
+        <span class="space-tag bar">酒吧</span>
+      </div>
+
+    </div>
+
+    <!-- 抖音传播 -->
+    <div style="background:var(--bg-elevated);border-radius:var(--radius-lg);padding:28px 32px;margin-top:40px;margin-bottom:40px;display:flex;align-items:center;gap:24px;flex-wrap:wrap;" class="fade-in">
+      <div style="font-size:2.5rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;">📱</div>
+      <div style="flex:1;min-width:200px;">
+        <div style="font-family:var(--font-cn);font-size:1.1rem;font-weight:700;color:var(--text-primary);margin-bottom:6px;">村民抖音号矩阵</div>
+        <div style="font-size:0.85rem;color:var(--text-secondary);line-height:1.7;">龙潭村民自发开设抖音账号，分享黄酒酿造、古村日常、四平戏排练。累计获得百万点赞，让龙潭的故事传播到全国各地。</div>
+      </div>
+      <a href="https://www.douyin.com/" target="_blank" style="padding:8px 20px;background:var(--forest);color:white;border-radius:8px;font-size:0.85rem;font-weight:600;text-decoration:none;white-space:nowrap;display:flex;align-items:center;height:fit-content;">关注我们</a>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer-ref">
+    <div class="footer-grid">
+      <div class="footer-brand-area">
+        <div class="footer-brand">龙潭</div>
+        <div class="footer-address">
+          福建省宁德市屏南县熙岭乡龙潭村<br>
+          数字非遗保护计划
+        </div>
+        <div class="footer-nav-row">
+          <a href="/">首页</a>
+          <a href="/heritage">传统非遗</a>
+          <a href="/music-innovation">现代艺术</a>
+          <a href="/creative">在地特产</a>
+          <a href="/offline-space">线下空间</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>联系 / 管理</h4>
+        <a href="mailto:longtan.heritage@gmail.com">联系邮箱：longtan.heritage@gmail.com</a>
+        <span style="display:block;font-size:0.8rem;color:var(--text-secondary);padding:4px 0;">微信公众号：敬请期待</span>
+        <span style="display:block;font-size:0.8rem;color:var(--text-secondary);padding:4px 0;">自媒体：敬请期待</span>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 龙潭EcoWeaves · 屏南非遗数字化平台</div>
+  </footer>
+
+  <!-- 侧边导览 -->
+  <nav class="page-sidenav" aria-label="页面导览">
+    <a href="#nav-hero" class="page-sidenav-dot active" data-nav="nav-hero"><span class="sidenav-label">顶部</span></a>
+    <a href="#nav-spaces" class="page-sidenav-dot" data-nav="nav-spaces"><span class="sidenav-label">特色空间</span></a>
+    <a href="#nav-experience" class="page-sidenav-dot" data-nav="nav-experience"><span class="sidenav-label">体验活动</span></a>
+  </nav>
+
+  <script src="/static/js/main.js"></script>
+</body>
+</html>

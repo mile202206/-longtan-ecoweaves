@@ -360,22 +360,23 @@ body::before {
 .fade-in-delay-3 { transition-delay: 0.24s; }
 .fade-in-delay-4 { transition-delay: 0.32s; }
 
-/* ---------- 页脚（多列参考风格） ---------- */
+/* ---------- 页脚（两列布局） ---------- */
 .footer-ref {
   border-top: 1px solid var(--border-subtle);
-  padding: 56px 28px 40px;
+  padding: 40px 28px 28px;
   max-width: var(--max-width);
   margin: 0 auto;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1.6fr 1fr;
   gap: 48px;
+  align-items: start;
 }
 
 .footer-brand-area {
-  /* 用于响应式合并 */
+  /* 左侧：品牌信息 + 导航链接 两栏并排 */
 }
 
 .footer-brand {
@@ -383,7 +384,7 @@ body::before {
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   letter-spacing: 2px;
 }
 
@@ -391,6 +392,26 @@ body::before {
   font-size: 0.78rem;
   color: var(--text-muted);
   line-height: 1.8;
+  margin-bottom: 18px;
+}
+
+.footer-nav-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 4px;
+}
+
+.footer-nav-row a {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 3px 0;
+  transition: color 0.2s;
+}
+
+.footer-nav-row a:hover {
+  color: var(--wall);
 }
 
 .footer-col h4 {
@@ -398,13 +419,13 @@ body::before {
   color: var(--text-muted);
   letter-spacing: 2px;
   text-transform: uppercase;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   font-weight: 500;
 }
 
 .footer-col a {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.82rem;
   color: var(--text-secondary);
   padding: 4px 0;
   text-decoration: none;
@@ -415,27 +436,47 @@ body::before {
   color: var(--wall);
 }
 
+.footer-col .footer-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 6px 16px;
+  background: var(--forest);
+  color: #fff;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.footer-col .footer-btn:hover {
+  opacity: 0.85;
+  color: #fff;
+}
+
 .footer-bottom {
-  margin-top: 32px;
-  padding-top: 16px;
+  margin-top: 28px;
+  padding-top: 14px;
   border-top: 1px solid var(--border-subtle);
   font-size: 0.7rem;
   color: var(--text-muted);
+  text-align: center;
 }
 
 @media (max-width: 960px) {
   .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-  }
-  .footer-brand-area {
-    grid-column: 1 / -1;
+    grid-template-columns: 1fr;
+    gap: 28px;
   }
 }
 
 @media (max-width: 640px) {
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+  .footer-nav-row {
+    flex-direction: column;
+    gap: 4px;
   }
 }
 

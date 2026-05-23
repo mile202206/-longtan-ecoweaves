@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>在地特产 · 龙潭非遗平台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css">
+  <style>
+    /* ========== 在地特产页 ========== */
+
+    /* Hero 区域 */
+    .creative-hero {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: calc(var(--nav-height) + 48px) 28px 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      position: relative;
+    }
+
+    .creative-hero-left {
+      position: relative;
+      z-index: 1;
+      padding-top: 20px;
+    }
+
+    .creative-hero-label {
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      color: var(--creek);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .creative-hero-title {
+      font-family: var(--font-cn);
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+      letter-spacing: 3px;
+      margin-bottom: 8px;
+    }
+
+    .creative-hero-title em {
+      font-style: normal;
+      color: var(--wall);
+    }
+
+    .creative-hero-en {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.2rem;
+      color: var(--creek);
+      font-style: italic;
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    .creative-hero-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 480px;
+    }
+
+    .creative-illustration {
+      position: relative;
+      width: 100%;
+      height: 320px;
+    }
+
+    .creative-illustration svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* 板块通用 */
+    .creative-block {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 16px 28px 0;
+      position: relative;
+    }
+
+    .section-number-ct {
+      font-family: var(--font-cn);
+      font-size: 5rem;
+      font-weight: 700;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 8px;
+      opacity: 0.5;
+    }
+
+    .block-header-ct {
+      display: flex;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .block-title-ct {
+      font-family: var(--font-cn);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 2px;
+    }
+
+    .block-sub-ct {
+      font-size: 0.68rem;
+      color: var(--wall);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .block-intro-ct {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.85;
+      max-width: 560px;
+      margin-bottom: 20px;
+    }
+
+    /* 两栏布局 */
+    .creative-block-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: stretch;
+    }
+
+    .creative-block-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: var(--bg-elevated);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+    }
+
+    .creative-block-visual {
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .creative-block-visual img {
+      width: 100%;
+      height: 240px;
+      border-radius: var(--radius-lg);
+      display: block;
+      object-fit: cover;
+    }
+
+    .creative-block-visual-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 16px;
+      background: linear-gradient(transparent, rgba(45,52,54,0.5));
+      color: white;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    }
+
+    /* 产品卡片网格 */
+    .creative-highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px;
+      margin-bottom: 32px;
+    }
+
+    .creative-highlight-card {
+      background: var(--bg-elevated);
+      border-radius: 18px;
+      padding: 28px 22px 24px;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .creative-highlight-card:hover {
+      box-shadow: 0 4px 24px rgba(200,150,74,0.06);
+      transform: translateY(-2px);
+    }
+
+    .creative-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+
+    .creative-dot.wall { background: var(--wall); }
+    .creative-dot.creek { background: var(--creek); }
+    .creative-dot.forest { background: var(--forest); }
+
+    .creative-highlight-card h4 {
+      font-family: var(--font-cn);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      flex-shrink: 0;
+    }
+
+    .creative-highlight-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      flex-grow: 1;
+    }
+
+    .creative-highlight-card .creative-price {
+      font-family: var(--font-cn);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--wall);
+      margin-top: 16px;
+      flex-shrink: 0;
+    }
+
+    /* 特产类型标签 */
+    .specialty-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-radius: 4px;
+      margin-top: 12px;
+      align-self: flex-start;
+    }
+
+    .specialty-tag.oil  { background: #e8f5e9; color: #2e7d32; }
+    .specialty-tag.honey { background: #fff3e0; color: #e65100; }
+    .specialty-tag.tea  { background: #f3e5f5; color: #6a1b9a; }
+    .specialty-tag.wine { background: #fce4ec; color: #c62828; }
+    .specialty-tag.mushroom { background: #e0f7fa; color: #00838f; }
+    .specialty-tag.weave { background: #e3f2fd; color: #1565c0; }
+
+    /* 在地特产两列布局（图片左+文字右） */
+    .specialty-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 32px;
+      margin-bottom: 40px;
+    }
+
+    .specialty-feature-card {
+      background: var(--bg-elevated);
+      border-radius: 18px;
+      padding: 28px 24px;
+      transition: var(--transition);
+      border-left: 3px solid var(--forest);
+    }
+
+    .specialty-feature-card:hover {
+      box-shadow: var(--shadow-sm);
+    }
+
+    .specialty-feature-card h4 {
+      font-family: var(--font-cn);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .specialty-feature-card p {
+      font-size: 0.82rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .specialty-feature-card .feature-price {
+      font-family: var(--font-cn);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--forest);
+    }
+
+    /* 动态列表 */
+    .creative-dynamic-list { margin-top: 28px; }
+
+    .creative-dynamic-item {
+      padding: 16px 20px;
+      background: var(--bg-elevated);
+      border-radius: var(--radius-md);
+      margin-bottom: 12px;
+      transition: var(--transition);
+    }
+
+    .creative-dynamic-item:hover {
+      box-shadow: var(--shadow-xs);
+    }
+
+    .creative-dynamic-item h4 {
+      font-family: var(--font-cn);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .creative-dynamic-item .ct-status {
+      display: inline-block;
+      padding: 2px 8px;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      border-radius: 3px;
+      margin-left: 10px;
+    }
+
+    .creative-dynamic-item .ct-status.active {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    /* 底部导航 */
+    .page-nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 48px 28px 0;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .page-nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* 响应式 */
+    @media (max-width: 960px) {
+      .creative-hero {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .creative-illustration { height: 240px; }
+      .creative-block-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .creative-block-visual { order: -1; }
+      .creative-highlight-grid { grid-template-columns: 1fr; }
+      .specialty-feature-grid { grid-template-columns: 1fr; }
+      .section-number-ct { font-size: 3.5rem; }
+    }
+
+    @media (max-width: 640px) {
+      .creative-hero-title { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">龙潭 · 非遗</a>
+      <div class="nav-links">
+        <a href="/">首页</a>
+        <a href="/heritage">传统非遗</a>
+        <a href="/music-innovation">现代艺术</a>
+        <a href="/creative" class="active">在地特产</a>
+        <a href="/offline-space">线下空间</a>
+        <a href="/admin">后台管理</a>
+      </div>
+      <div class="nav-mobile-toggle"><span></span><span></span><span></span></div>
+    </div>
+  </nav>
+
+  <!-- Hero 区域 -->
+  <header class="creative-hero" id="nav-hero">
+    <div class="creative-hero-left fade-in">
+      <div class="creative-hero-label">LOCAL SPECIALTIES · 在地特产</div>
+      <h1 class="creative-hero-title">在地<em>特产</em></h1>
+      <div class="creative-hero-en">Rooted in Longtan · Taste the Mountain</div>
+      <p class="creative-hero-desc content-placeholder" data-content="creative_subtitle">
+        从黄酒咖啡的灵感创意，到山苍子精油的天然馈赠——龙潭的深山里，藏着被时光酝酿的好东西。每一件特产都浸染着闽东山水的味道。
+      </p>
+    </div>
+    <div class="creative-illustration fade-in fade-in-delay-1">
+      <svg viewBox="0 0 480 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- 云雾 -->
+        <path class="svganim-cloud" d="M20 75 Q70 68 120 72 Q170 78 210 70" stroke="rgba(255,255,255,0.14)" stroke-width="0.8" fill="none"/>
+        <ellipse class="svganim-cloud-slow" cx="350" cy="90" rx="55" ry="6" fill="rgba(255,255,255,0.05)"/>
+        <!-- 远山 -->
+        <path class="svganim-mountain-1" d="M0 125 Q40 108 80 118 Q130 102 180 114 Q220 105 270 112 Q320 100 370 107 Q420 102 480 105 L480 320 L0 320Z" fill="rgba(91,154,142,0.06)" stroke="rgba(91,154,142,0.03)" stroke-width="0.5"/>
+        <path class="svganim-mountain-2" d="M0 155 Q50 136 110 147 Q160 130 220 143 Q270 127 330 137 Q380 125 430 131 Q460 125 480 128 L480 320 L0 320Z" fill="rgba(91,154,142,0.10)" stroke="rgba(91,154,142,0.06)" stroke-width="0.7"/>
+        <!-- 松树 -->
+        <g class="svganim-pine-far-1">
+        <line x1="90" y1="143" x2="90" y2="113" stroke="rgba(74,124,89,0.12)" stroke-width="1.2"/>
+        <ellipse cx="90" cy="110" rx="8" ry="11" fill="rgba(74,124,89,0.07)"/>
+        </g>
+        <g class="svganim-pine-far-2">
+        <line x1="140" y1="147" x2="140" y2="120" stroke="rgba(74,124,89,0.10)" stroke-width="1"/>
+        <ellipse cx="140" cy="117" rx="7" ry="10" fill="rgba(74,124,89,0.05)"/>
+        </g>
+        <path class="svganim-mountain-3" d="M0 185 Q60 168 130 180 Q190 164 260 174 Q320 161 380 169 Q430 162 480 166 L480 320 L0 320Z" fill="rgba(74,124,89,0.09)" stroke="rgba(74,124,89,0.06)" stroke-width="0.8"/>
+        <path class="svganim-mountain-4" d="M0 215 Q70 201 150 211 Q220 196 300 206 Q360 194 420 200 Q455 194 480 198 L480 320 L0 320Z" fill="rgba(74,124,89,0.12)" stroke="rgba(74,124,89,0.08)" stroke-width="0.9"/>
+        <!-- 溪流 -->
+        <path class="svganim-creek-upper" d="M0 265 Q50 260 100 263 Q150 267 200 261 Q250 255 300 260 Q350 265 400 259 Q440 255 480 261" stroke="rgba(91,154,142,0.16)" stroke-width="1" fill="none"/>
+        <path class="svganim-creek-lower" d="M0 273 Q60 269 120 272 Q180 275 240 270 Q300 265 360 270 Q410 273 460 268 Q480 266 480 268" stroke="rgba(91,154,142,0.08)" stroke-width="0.6" fill="none"/>
+        <!-- 石阶 -->
+        <path class="svganim-stone-path-1" d="M195 263 L195 320" stroke="rgba(45,52,54,0.09)" stroke-width="0.6" stroke-dasharray="4 3"/>
+        <path class="svganim-stone-path-2" d="M215 259 L220 320" stroke="rgba(45,52,54,0.07)" stroke-width="0.5" stroke-dasharray="3 4"/>
+        <!-- 古厝（作坊） -->
+        <rect x="340" y="232" width="50" height="30" rx="1" fill="rgba(45,52,54,0.11)"/>
+        <rect x="335" y="227" width="60" height="7" rx="1" fill="rgba(45,52,54,0.15)"/>
+        <line x1="335" y1="227" x2="365" y2="219" stroke="rgba(45,52,54,0.15)" stroke-width="0.8"/>
+        <line x1="395" y1="227" x2="365" y2="219" stroke="rgba(45,52,54,0.15)" stroke-width="0.8"/>
+        <rect class="svganim-window-glow" x="355" y="240" width="8" height="17" rx="0.5" fill="rgba(200,150,74,0.22)"/>
+        <!-- 酒缸群 -->
+        <g class="svganim-jar-body">
+        <ellipse cx="270" cy="252" rx="22" ry="28" fill="rgba(200,150,74,0.11)"/>
+        <rect x="266" y="226" width="8" height="4" rx="1" fill="rgba(200,150,74,0.16)"/>
+        </g>
+        <g class="svganim-jar-rim">
+        <ellipse cx="310" cy="258" rx="16" ry="20" fill="rgba(200,150,74,0.08)"/>
+        <rect x="307" y="240" width="6" height="3" rx="1" fill="rgba(200,150,74,0.12)"/>
+        </g>
+        <circle class="svganim-jar-glow" cx="270" cy="252" r="8" fill="rgba(200,150,74,0.10)"/>
+        <circle class="svganim-jar-glow" cx="310" cy="258" r="5" fill="rgba(200,150,74,0.07)"/>
+        <!-- 竹林 -->
+        <g class="svganim-bamboo-1">
+        <line x1="30" y1="320" x2="28" y2="195" stroke="rgba(74,124,89,0.09)" stroke-width="1"/>
+        <path d="M28 215 Q22 211 17 205" stroke="rgba(74,124,89,0.07)" stroke-width="0.5" fill="none"/>
+        <path d="M28 235 Q35 231 40 225" stroke="rgba(74,124,89,0.07)" stroke-width="0.5" fill="none"/>
+        </g>
+        <g class="svganim-bamboo-2">
+        <line x1="46" y1="320" x2="44" y2="210" stroke="rgba(74,124,89,0.07)" stroke-width="0.8"/>
+        <path d="M44 230 Q50 226 55 220" stroke="rgba(74,124,89,0.06)" stroke-width="0.5" fill="none"/>
+        </g>
+        <!-- 暖阳 -->
+        <circle class="svganim-sun-outer" cx="410" cy="55" r="42" fill="rgba(200,150,74,0.10)"/>
+        <circle class="svganim-sun-mid" cx="410" cy="55" r="26" fill="rgba(200,150,74,0.07)"/>
+        <circle class="svganim-sun-inner" cx="410" cy="55" r="12" fill="rgba(200,150,74,0.05)"/>
+      </svg>
+    </div>
+  </header>
+
+  <!-- 板块 01：文创饮品 -->
+  <section class="creative-block" id="nav-drinks">
+    <div class="block-header-ct fade-in">
+      <div class="section-number-ct">01</div>
+      <h2 class="block-title-ct">文创饮品</h2>
+      <span class="block-sub-ct">CULTURAL DRINKS</span>
+    </div>
+    <p class="block-intro-ct fade-in content-placeholder" data-content="creative_products_desc">
+      以龙潭红粬黄酒为灵感原点，由返乡青年陈忠业创立的「回村人」品牌主导开发。从黄酒咖啡到黄酒奶茶，让六百年非遗以全新的方式被年轻人端起、喝下、分享。
+    </p>
+
+    <div class="creative-block-inner">
+      <div class="creative-block-left">
+        <p class="block-intro-ct fade-in" style="margin-top:0;">
+          「喝老祖宗的酒，走年轻人的路」——这不仅是口号，更是龙潭文创的核心理念。通过订单收购村民自酿黄酒、教授饮品制作技巧，让传统技艺与现代消费场景相融合，带动全村共同致富。
+        </p>
+        <p class="block-intro-ct fade-in">
+          每一款产品都经过数十次配方调试：黄酒与咖啡的醇苦平衡、与奶茶的温润融合、与气泡水的清爽碰撞——在保留黄酒特色的同时，让口感更贴近年轻人。
+        </p>
+      </div>
+      <div class="creative-block-visual fade-in fade-in-delay-2">
+        <img src="/uploads/chenzhongye_drinks.jpg" alt="陈忠业在龙潭酒博馆介绍黄酒文创饮品" loading="lazy">
+        <div class="creative-block-visual-label">龙潭酒博馆 · 陈忠业向游客介绍黄酒咖啡/奶茶/苏打</div>
+      </div>
+    </div>
+
+    <!-- 核心产品卡片 -->
+    <div class="creative-highlight-grid">
+      <div class="creative-highlight-card fade-in fade-in-delay-1">
+        <div class="creative-dot wall"></div>
+        <h4>黄酒咖啡</h4>
+        <p>手冲咖啡与陈年红粬黄酒的碰撞，醇苦中透着温润米香。配上古戏台的背景音，是许多游客的"龙潭初味"。</p>
+        <div class="creative-price">¥28</div>
+      </div>
+      <div class="creative-highlight-card fade-in fade-in-delay-2">
+        <div class="creative-dot creek"></div>
+        <h4>黄酒奶茶</h4>
+        <p>以鲜奶与黄酒调和，加入手工黑糖，温润顺滑、酒香含蓄。冬日里最受欢迎的一杯暖心文创。</p>
+        <div class="creative-price">¥22</div>
+      </div>
+      <div class="creative-highlight-card fade-in fade-in-delay-3">
+        <div class="creative-dot forest"></div>
+        <h4>黄酒苏打</h4>
+        <p>冰凉气泡与红粬黄酒的清爽邂逅，低酒精度、高颜值，适合夏日饮用与拍照分享。</p>
+        <div class="creative-price">¥18</div>
+      </div>
+    </div>
+
+    <!-- 动态文创产品 -->
+    <div class="creative-dynamic-list" id="creative-products-dynamic"></div>
+  </section>
+
+  <!-- 板块 02：在地特产 -->
+  <section class="creative-block" id="nav-specialties">
+    <div class="block-header-ct fade-in">
+      <div class="section-number-ct">02</div>
+      <h2 class="block-title-ct">在地特产</h2>
+      <span class="block-sub-ct">MOUNTAIN SPECIALTIES</span>
+    </div>
+    <p class="block-intro-ct fade-in">
+      龙潭地处屏南深山，海拔八百余米，森林覆盖率超过80%。得天独厚的自然环境孕育了丰富的山野物产——从山苍子精油的天然馈赠，到崖壁野生蜂蜜的甘甜，再到高海拔茶园的清香，每一件都带着闽东大山的温度。
+    </p>
+
+    <div class="creative-block-inner">
+      <div class="creative-block-left">
+        <p class="block-intro-ct fade-in" style="margin-top:0;">
+          龙潭的在地特产不同于工业量产的商品——每一瓶精油、每一罐蜂蜜、每一袋茶叶，都来自村民的双手和山野的馈赠。购买这些产品，不仅是把山间好味道带回家，更是在支持村民的可持续生计。
+        </p>
+        <p class="block-intro-ct fade-in">
+          从精油到编织包，从菌菇到辣椒干——品种丰富、价格亲民，是真正的"去山里赶集"。
+        </p>
+      </div>
+      <div class="creative-block-visual fade-in fade-in-delay-2">
+        <img src="/uploads/specialty_display_2.jpg" alt="屏南电商产业园展示特色农特产品" loading="lazy">
+        <div class="creative-block-visual-label">屏南特色农产品展示 · 山苍子精油/蜂蜜/菌菇/竹编等</div>
+      </div>
+    </div>
+
+    <div class="creative-highlight-grid">
+      <!-- 山苍子精油 -->
+      <div class="creative-highlight-card fade-in fade-in-delay-1">
+        <div class="creative-dot forest"></div>
+        <h4>山苍子精油</h4>
+        <p>屏南本土3000多亩山苍子种植基地，利用高柠檬醛含量品种冷压萃取。夏日防蚊神器，涂一涂止痒消肿，清香不刺激，当地人手一瓶的"绿色风油精"。固定小瓶包装，方便随身携带。</p>
+        <span class="specialty-tag oil">精油/护肤</span>
+        <div class="creative-price" style="margin-top:8px;">¥15-20/瓶</div>
+      </div>
+      <!-- 野生蜂蜜 -->
+      <div class="creative-highlight-card fade-in fade-in-delay-2">
+        <div class="creative-dot wall"></div>
+        <h4>崖壁野生蜂蜜</h4>
+        <p>采自龙潭周边深山的崖壁蜂巢，蜜蜂采集百花之精华，一年仅采割一次。350ml玻璃瓶装，色泽琥珀、花香浓郁，入口甘甜绵长，是真正的"山间黄金"。</p>
+        <span class="specialty-tag honey">蜂蜜</span>
+        <div class="creative-price" style="margin-top:8px;">¥88/350ml</div>
+      </div>
+      <!-- 高山茶 -->
+      <div class="creative-highlight-card fade-in fade-in-delay-3">
+        <div class="creative-dot creek"></div>
+        <h4>高山云雾茶</h4>
+        <p>龙潭周边海拔800m以上茶园，常年云雾缭绕、昼夜温差大。茶叶芽头肥壮、白毫显露，简装袋装但品质扎实，冲泡后清香持久、回甘悠长，是日常口粮茶的性价比之选。</p>
+        <span class="specialty-tag tea">茶叶</span>
+        <div class="creative-price" style="margin-top:8px;">¥10-20/袋</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer-ref">
+    <div class="footer-grid">
+      <div class="footer-brand-area">
+        <div class="footer-brand">龙潭</div>
+        <div class="footer-address">
+          福建省宁德市屏南县熙岭乡龙潭村<br>
+          数字非遗保护计划
+        </div>
+        <div class="footer-nav-row">
+          <a href="/">首页</a>
+          <a href="/heritage">传统非遗</a>
+          <a href="/music-innovation">现代艺术</a>
+          <a href="/creative">在地特产</a>
+          <a href="/offline-space">线下空间</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>联系 / 管理</h4>
+        <a href="mailto:longtan.heritage@gmail.com">联系邮箱：longtan.heritage@gmail.com</a>
+        <span style="display:block;font-size:0.8rem;color:var(--text-secondary);padding:4px 0;">微信公众号：敬请期待</span>
+        <span style="display:block;font-size:0.8rem;color:var(--text-secondary);padding:4px 0;">自媒体：敬请期待</span>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 龙潭EcoWeaves · 屏南非遗数字化平台</div>
+  </footer>
+
+  <!-- 侧边导览 -->
+  <nav class="page-sidenav" aria-label="页面导览">
+    <a href="#nav-hero" class="page-sidenav-dot active" data-nav="nav-hero"><span class="sidenav-label">顶部</span></a>
+    <a href="#nav-drinks" class="page-sidenav-dot" data-nav="nav-drinks"><span class="sidenav-label">文创饮品</span></a>
+    <a href="#nav-specialties" class="page-sidenav-dot" data-nav="nav-specialties"><span class="sidenav-label">在地特产</span></a>
+  </nav>
+
+  <script src="/static/js/main.js"></script>
+  <script>
+    // ============ 加载动态内容 ============
+    document.addEventListener('DOMContentLoaded', function() {
+      loadCreativeProducts();
+    });
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    function loadCreativeProducts() {
+      fetch('/api/creative?category=products').then(function(r) { return r.json(); }).then(function(items) {
+        if (!items || items.length === 0) return;
+        renderProductList('creative-products-dynamic', items);
+      }).catch(function() {});
+    }
+
+    function renderProductList(containerId, items) {
+      var container = document.getElementById(containerId);
+      if (!items || items.length === 0) return;
+      var html = '';
+      items.forEach(function(item) {
+        var statusClass = item.active ? 'active' : 'inactive';
+        var statusText = item.active ? '上架中' : '已下架';
+        html += '<div class="creative-dynamic-item fade-in">';
+        html += '<h4>' + escapeHtml(item.title || '') + '<span class="ct-status ' + statusClass + '">' + statusText + '</span></h4>';
+        html += '<p>' + escapeHtml(item.description || '') + '</p>';
+        if (item.image) {
+          html += '<p style="color:var(--text-light);font-size:0.78rem;margin-top:8px;">图片：' + escapeHtml(item.image) + '</p>';
+        }
+        html += '</div>';
+      });
+      container.innerHTML = html;
+
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold: 0.1 });
+      container.querySelectorAll('.fade-in').forEach(function(el) { obs.observe(el); });
+    }
+  </script>
+</body>
+</html>
