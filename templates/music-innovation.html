@@ -15,7 +15,7 @@
     .music-hero {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: calc(var(--nav-height) + 48px) 28px 64px;
+      padding: calc(var(--nav-height) + 48px) 28px 32px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 48px;
@@ -84,38 +84,11 @@
       height: 100%;
     }
 
-    /* 声音波浪装饰 */
-    .sound-wave-wrap {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 0 28px;
-    }
-
-    .sound-wave-bar {
-      display: inline-block;
-      width: 3px;
-      margin: 0 1.5px;
-      background: var(--creek);
-      border-radius: 2px;
-      animation: wave 1.2s ease-in-out infinite;
-    }
-
-    .sound-wave-bar:nth-child(1) { height: 12px; animation-delay: 0s; }
-    .sound-wave-bar:nth-child(2) { height: 20px; animation-delay: 0.1s; }
-    .sound-wave-bar:nth-child(3) { height: 28px; animation-delay: 0.2s; }
-    .sound-wave-bar:nth-child(4) { height: 18px; animation-delay: 0.15s; }
-    .sound-wave-bar:nth-child(5) { height: 24px; animation-delay: 0.05s; }
-
-    @keyframes wave {
-      0%, 100% { transform: scaleY(1); }
-      50% { transform: scaleY(0.4); }
-    }
-
     /* 创新板块 */
     .innovation-block {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 56px 28px 0;
+      padding: 32px 28px 0;
       position: relative;
     }
 
@@ -304,7 +277,7 @@
     .festival-section {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 56px 28px 0;
+      padding: 32px 28px 0;
     }
 
     .festival-banner {
@@ -577,29 +550,9 @@
         <path d="M55 195 Q78 172 103 195 Q126 218 150 195 Q173 172 198 195" stroke="rgba(91,154,142,0.25)" stroke-width="2" fill="none"/>
         <path d="M95 218 Q118 196 143 218 Q166 240 190 218 Q213 196 238 218" stroke="rgba(200,150,74,0.20)" stroke-width="1.5" fill="none"/>
         <path d="M155 207 Q178 185 203 207 Q226 229 250 207 Q273 185 298 207" stroke="rgba(91,154,142,0.18)" stroke-width="1.5" fill="none"/>
-        <!-- 音符（保留） -->
-        <text x="115" y="165" font-size="26" fill="rgba(91,154,142,0.3)">♪</text>
-        <text x="195" y="178" font-size="20" fill="rgba(200,150,74,0.25)">♫</text>
-        <text x="255" y="152" font-size="24" fill="rgba(91,154,142,0.28)">♪</text>
       </svg>
     </div>
   </header>
-
-  <!-- 声音波浪装饰 -->
-  <div class="sound-wave-wrap">
-    <div style="display:flex; align-items:center; gap:2px; height:32px;">
-      <div class="sound-wave-bar"></div>
-      <div class="sound-wave-bar"></div>
-      <div class="sound-wave-bar"></div>
-      <div class="sound-wave-bar"></div>
-      <div class="sound-wave-bar"></div>
-      <div class="sound-wave-bar"></div>
-      <div class="sound-wave-bar"></div>
-      <div class="sound-wave-bar"></div>
-      <div class="sound-wave-bar"></div>
-      <div class="sound-wave-bar"></div>
-    </div>
-  </div>
 
   <!-- 龙潭重声音乐节 -->
   <section class="festival-section" id="nav-festival">
