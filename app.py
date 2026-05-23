@@ -5,13 +5,54 @@ import os
 import json
 import uuid
 from datetime import datetime
-from flask import Flask, render_template, request, redirect, url_for, jsonify, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, jsonify, send_from_directory, session, flash
+from functools import wraps
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'uploads')
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max upload
+app.secret_key = 'longtan_ecoweaves_secret_2024!@#'
 
-# 数据存储文件路径
+# 演示账号（运营人员登录用）
+ADMIN_USERNAME = 'ecoweaves'
+ADMIN_PASSWORD = 'Longtan@2024'
+
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not session.get('admin_logged_in'):
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return decorated_function
+
+
+# ==================== 认证路由 ====================
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """后台登录页面"""
+    if request.method == 'POST':
+        username = request.form.get('username', '').strip()
+        password = request.form.get('password', '').strip()
+        if username == ADMIN_USERNAME and password == ADMIN_PASSWORD:
+            session['admin_logged_in'] = True
+            session['admin_user'] = username
+            return redirect(url_for('admin'))
+        else:
+            return render_template('login.html', error='用户名或密码错误')
+    return render_template('login.html', error=None)
+
+
+@app.route('/logout')
+def logout():
+    """退出登录"""
+    session.clear()
+    return redirect(url_for('login'))
+
+
+# ==================== 数据存储 ====================
+
 DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'site_data.json')
 
 ALLOWED_IMAGE_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'}
@@ -63,9 +104,10 @@ def music_innovation():
 
 
 @app.route('/admin')
+@login_required
 def admin():
     data = load_data()
-    return render_template('admin.html', data=data)
+    return render_template('admin.html', data=data, admin_user=session.get('admin_user', ''))
 
 
 # ==================== 错误处理 ====================

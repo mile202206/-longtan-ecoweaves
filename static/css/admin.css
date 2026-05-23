@@ -553,3 +553,21 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* ============ 导航栏退出按钮 ============ */
+.nav-logout {
+  margin-left: 8px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--error, #C45B5A);
+  background: rgba(192,69,90,0.08);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-logout:hover {
+  background: rgba(192,69,90,0.15);
+  color: #A03B3A;
+}

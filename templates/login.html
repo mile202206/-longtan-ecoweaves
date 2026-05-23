@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录 · 龙潭非遗平台后台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ============ 全局变量 ============ */
+    :root {
+      --gold-wall: #C8964A;
+      --creek:     #5B9A8E;
+      --forest:     #4A7C59;
+      --bg:        #FAF8F5;
+      --bg-card:   #FFFFFF;
+      --text:      #2C2C2C;
+      --text-sec:  #6B6B6B;
+      --text-light:#A0A0A0;
+      --error:     #C45B5A;
+      --shadow:    0 8px 32px rgba(0,0,0,0.08);
+      --radius:    14px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', 'Noto Serif SC', serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* ============ 山水背景 ============ */
+    .login-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .login-bg svg { width: 100%; height: 100%; display: block; }
+
+    /* ============ 登录卡片 ============ */
+    .login-card {
+      position: relative;
+      z-index: 1;
+      width: 420px;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 48px 40px 40px;
+      animation: cardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(24px) scale(0.97); }
+      to   { opacity: 1; transform: translateY(0)    scale(1);    }
+    }
+
+    .login-brand {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .login-brand-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 16px;
+      background: linear-gradient(135deg, var(--gold-wall), var(--creek));
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .login-brand-icon svg { width: 30px; height: 30px; }
+    .login-brand h1 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+    .login-brand p {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      margin-top: 6px;
+    }
+
+    /* ============ 表单 ============ */
+    .login-form { display: flex; flex-direction: column; gap: 20px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-sec);
+      letter-spacing: 0.03em;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--text);
+      background: var(--bg);
+      border: 1.5px solid #E8E4DF;
+      border-radius: 10px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group input::placeholder { color: var(--text-light); }
+    .form-group input:focus {
+      border-color: var(--creek);
+      box-shadow: 0 0 0 3px rgba(91,154,142,0.12);
+    }
+
+    .login-btn {
+      margin-top: 4px;
+      width: 100%;
+      padding: 13px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: inherit;
+      color: #fff;
+      background: linear-gradient(135deg, var(--forest), var(--creek));
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .login-btn:hover  { opacity: 0.92; transform: translateY(-1px); }
+    .login-btn:active { transform: translateY(0); }
+
+    /* ============ 错误提示 ============ */
+    .login-error {
+      display: none;
+      padding: 10px 14px;
+      font-size: 0.82rem;
+      color: var(--error);
+      background: #FDF2F2;
+      border: 1px solid #F5D5D5;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .login-error.show { display: block; animation: shake 0.4s ease; }
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      20%     { transform: translateX(-6px); }
+      40%     { transform: translateX(5px); }
+      60%     { transform: translateX(-4px); }
+      80%     { transform: translateX(3px); }
+    }
+
+    /* ============ 底注 ============ */
+    .login-footer {
+      text-align: center;
+      margin-top: 28px;
+      font-size: 0.75rem;
+      color: var(--text-light);
+    }
+
+    /* ============ 响应式 ============ */
+    @media (max-width: 480px) {
+      .login-card { width: 92vw; padding: 36px 24px 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 山水背景 SVG -->
+  <div class="login-bg">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- 天空渐变 -->
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#E8E0D4"/>
+          <stop offset="100%" stop-color="#FAF8F5"/>
+        </linearGradient>
+        <linearGradient id="mountain-far" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#C8D8D0" stop-opacity="0.45"/>
+          <stop offset="100%" stop-color="#C8D8D0" stop-opacity="0.08"/>
+        </linearGradient>
+        <linearGradient id="mountain-mid" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#A8BFB4" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#A8BFB4" stop-opacity="0.05"/>
+        </linearGradient>
+      </defs>
+      <rect width="1440" height="900" fill="url(#sky)"/>
+      <!-- 远山 -->
+      <path d="M0 900 L0 620 Q180 480 360 560 Q500 440 640 520 Q780 400 960 500 Q1100 420 1260 540 Q1350 500 1440 550 L1440 900 Z" fill="url(#mountain-far)"/>
+      <!-- 近山 -->
+      <path d="M0 900 L0 700 Q200 600 400 680 Q550 620 700 670 Q850 600 1000 660 Q1150 620 1300 690 Q1380 660 1440 680 L1440 900 Z" fill="url(#mountain-mid)"/>
+      <!-- 装饰圆点（模拟光斑） -->
+      <circle cx="200" cy="180" r="80" fill="#C8964A" opacity="0.04"/>
+      <circle cx="1200" cy="140" r="60" fill="#5B9A8E" opacity="0.04"/>
+    </svg>
+  </div>
+
+  <!-- 登录卡片 -->
+  <div class="login-card">
+    <div class="login-brand">
+      <div class="login-brand-icon">
+        <!-- 山形图标 -->
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 28 L16 6 L28 28 Z" fill="#fff" opacity="0.9"/>
+          <path d="M10 28 L16 12 L22 28 Z" fill="#fff" opacity="0.5"/>
+        </svg>
+      </div>
+      <h1>龙潭 · 非遗平台</h1>
+      <p>后台管理系统</p>
+    </div>
+
+    {% if error %}
+    <div class="login-error show" id="login-error">{{ error }}</div>
+    {% endif %}
+    {% if not error %}
+    <div class="login-error" id="login-error"></div>
+    {% endif %}
+
+    <form class="login-form" method="POST" action="/login">
+      <div class="form-group">
+        <label for="username">账号</label>
+        <input type="text" id="username" name="username" placeholder="请输入账号" required autofocus>
+      </div>
+      <div class="form-group">
+        <label for="password">密码</label>
+        <input type="password" id="password" name="password" placeholder="请输入密码" required>
+      </div>
+      <button type="submit" class="login-btn">登&nbsp;&nbsp;录</button>
+    </form>
+
+    <div class="login-footer">屏南龙潭非遗数字化平台 · 运营后台</div>
+  </div>
+
+</body>
+</html>
