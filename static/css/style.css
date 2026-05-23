@@ -1,0 +1,708 @@
+/* ============================================
+   屏南龙潭非遗数字化平台 - 全局样式
+   配色来源：龙潭村实景 · 黄墙黛瓦清溪山林
+   ============================================ */
+
+/* ---------- CSS变量体系 ---------- */
+:root {
+  /* 【屏南龙潭实景配色 - 主变量】 */
+  --wall:          #C8964A;   /* 黄墙（夯土暖赭）主色 */
+  --wall-light:     #D4A04A;   /* 黄墙亮版 */
+  --wall-soft:     rgba(200,150,74,0.09);
+
+  --tile:          #2D3436;   /* 黛瓦（墨灰）文字主色 */
+  --tile-light:     #4A4845;   /* 黛瓦亮版 */
+  --tile-soft:     rgba(45,52,54,0.05);
+
+  --creek:         #5B9A8E;   /* 清溪（溪水绿）辅助 */
+  --creek-soft:    rgba(91,154,142,0.08);
+
+  --forest:        #4A7C59;   /* 深绿（山林）辅助 */
+  --forest-soft:   rgba(74,124,89,0.07);
+
+  --amber:         #B8860B;   /* 黄酒琥珀 点缀 */
+  --amber-soft:    rgba(184,134,11,0.08);
+
+  /* 【向后兼容别名 - 旧页面引用】 */
+  --accent:        var(--wall);
+  --accent-soft:   var(--wall-soft);
+  --accent-hover:   var(--wall-light);
+  --sage:          var(--creek);
+  --sage-soft:     var(--creek-soft);
+  --blue-muted:    #7BA3B8;   /* 蓝灰 - 重新定义 */
+
+  /* 文字层级 */
+  --text-primary:   var(--tile);
+  --text-secondary: #5A5754;
+  --text-muted:     #9A958E;
+  --text-inverse:   #FBF7F0;
+
+  /* 背景层级 */
+  --bg-base:       #FBF7F0;
+  --bg-elevated:    #FEFBF5;
+  --bg-muted:      #F3EFE8;
+  --bg-subtle:     #F9F6F0;
+
+  /* 边框 */
+  --border:         #DEDDD5;
+  --border-subtle:  #E8E4DC;
+
+  /* 阴影 */
+  --shadow-xs:   0 1px 3px rgba(45,52,54,0.04);
+  --shadow-sm:   0 2px 8px rgba(45,52,54,0.06);
+  --shadow-md:   0 4px 16px rgba(45,52,54,0.08);
+  --shadow-lg:   0 8px 32px rgba(45,52,54,0.12);
+
+  /* 圆角 */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+
+  /* 字体 */
+  --font-cn:   'Noto Serif SC', 'Source Han Serif SC', serif;
+  --font-sans: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+
+  /* 过渡 */
+  --transition-fast: all 0.15s ease;
+  --transition:      all 0.25s ease;
+
+  /* 布局 */
+  --max-width: 1120px;
+  --nav-height: 60px;
+}
+
+/* ---------- 基础重置 ---------- */
+*, *::before, *::after { margin:0; padding:0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: var(--bg-base);
+  line-height: 1.75;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; transition: var(--transition-fast); }
+img { max-width: 100%; height: auto; display: block; }
+ul, ol { list-style: none; }
+
+/* ---------- 屏南视觉元素：水墨纹理背景 + 龙潭航拍 ---------- */
+body::before {
+  content: '';
+  position: fixed;
+  top:0; left:0; right:0; bottom:0;
+  background:
+    /* 暖色半透明遮罩（整体干净，背景图极淡） */
+    linear-gradient(
+      120deg,
+      rgba(251, 247, 240, 0.96) 0%,
+      rgba(251, 247, 240, 0.93) 40%,
+      rgba(251, 247, 240, 0.94) 70%,
+      rgba(251, 247, 240, 0.95) 100%
+    ),
+    /* 黄墙暖光（左上） */
+    radial-gradient(ellipse 60% 50% at 10% 5%,   rgba(200,150,74,0.04), transparent),
+    /* 清溪绿光（右下） */
+    radial-gradient(ellipse 50% 40% at 90% 95%,   rgba(91,154,142,0.03), transparent),
+    /* 山林深绿（右侧中间） */
+    radial-gradient(ellipse 40% 60% at 95% 45%,   rgba(74,124,89,0.02), transparent),
+    /* 宣纸纹理感 */
+    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.015'/%3E%3C/svg%3E"),
+    /* 底层：龙潭村航拍（仅右下一小块装饰） */
+    url("/uploads/longtan_cri_1.jpg") right 8% bottom 8% / 18% auto no-repeat fixed;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ---------- 品牌装饰：青瓦飞檐分隔线 ---------- */
+.brand-divider {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--border) 15%,
+    var(--wall) 50%,
+    var(--border) 85%,
+    transparent 100%
+  );
+  opacity: 0.6;
+}
+
+/* ---------- 品牌装饰：山水意境 SVG 容器 ---------- */
+.brand-watermark {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.025;
+  z-index: 0;
+}
+
+/* ---------- 屏南特色标签 ---------- */
+.tag-pingnan {
+  display: inline-block;
+  padding: 3px 12px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  border: 1px solid var(--wall);
+  color: var(--wall);
+  border-radius: 2px;
+}
+
+/* ---------- 媒体画廊（只读展示） ---------- */
+.media-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.media-gallery-item {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-muted);
+  aspect-ratio: 4/3;
+  transition: var(--transition);
+}
+
+.media-gallery-item:hover {
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-2px);
+}
+
+.media-gallery-item img,
+.media-gallery-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-gallery-item .gallery-type {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  padding: 2px 8px;
+  background: rgba(45,52,54,0.55);
+  color: white;
+  font-size: 0.6rem;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+
+.media-gallery-item .gallery-desc {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 10px 8px;
+  background: linear-gradient(transparent, rgba(45,52,54,0.5));
+  color: white;
+  font-size: 0.72rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.media-gallery-item:hover .gallery-desc {
+  opacity: 1;
+}
+
+.media-gallery-empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  margin-top: 20px;
+}
+
+/* ---------- 导航栏 ---------- */
+.navbar {
+  position: fixed;
+  top:0; left:0; right:0;
+  z-index: 1000;
+  background: rgba(251,247,240,0.90);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-subtle);
+  transition: var(--transition);
+}
+.navbar.scrolled {
+  border-bottom-color: var(--border);
+  box-shadow: var(--shadow-xs);
+}
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+}
+.nav-logo {
+  font-family: var(--font-cn);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 3px;
+}
+.nav-links { display: flex; align-items: center; }
+.nav-links a {
+  padding: 6px 0;
+  margin-left: 28px;
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  position: relative;
+  background: none;
+  border-radius: 0;
+  transition: color 0.2s ease;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--text-primary);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--text-primary); background: none; }
+.nav-links a:hover::after,
+.nav-links a.active::after { width: 100%; }
+.nav-links a.active { font-weight: 600; }
+.nav-links .nav-admin {
+  color: var(--text-muted) !important;
+  background: none !important;
+  margin-left: 28px;
+}
+.nav-links .nav-admin:hover {
+  color: var(--text-secondary) !important;
+  background: none !important;
+}
+.nav-links .nav-admin::after { display: none; }
+.nav-mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-mobile-toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+/* ---------- 按钮 ---------- */
+.btn-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  border: 1.5px solid var(--text-primary);
+  background: transparent;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+.btn-line:hover {
+  background: var(--text-primary);
+  color: var(--bg-base);
+}
+.btn-line .arrow { transition: transform 0.2s ease; }
+.btn-line:hover .arrow { transform: translateX(3px); }
+.btn-line.filled {
+  background: var(--wall);
+  border-color: var(--wall);
+  color: white;
+}
+.btn-line.filled:hover {
+  background: var(--wall-light);
+  border-color: var(--wall-light);
+  color: white;
+}
+.btn-group { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* ---------- 卡片 ---------- */
+.card-clean {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  transition: var(--transition);
+}
+.card-clean:hover {
+  box-shadow: var(--shadow-sm);
+  border-color: var(--border);
+}
+
+/* ---------- 滚动动画 ---------- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+.fade-in-delay-1 { transition-delay: 0.08s; }
+.fade-in-delay-2 { transition-delay: 0.16s; }
+.fade-in-delay-3 { transition-delay: 0.24s; }
+.fade-in-delay-4 { transition-delay: 0.32s; }
+
+/* ---------- 页脚（多列参考风格） ---------- */
+.footer-ref {
+  border-top: 1px solid var(--border-subtle);
+  padding: 56px 28px 40px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 48px;
+}
+
+.footer-brand-area {
+  /* 用于响应式合并 */
+}
+
+.footer-brand {
+  font-family: var(--font-cn);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.footer-address {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+.footer-col h4 {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.footer-col a {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  padding: 4px 0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-col a:hover {
+  color: var(--wall);
+}
+
+.footer-bottom {
+  margin-top: 32px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 960px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .footer-brand-area {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Accordion ---------- */
+.accordion {
+  width: 100%;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-elevated);
+}
+.accordion-item { border-bottom: 1px solid var(--border-subtle); }
+.accordion-item:last-child { border-bottom: none; }
+.accordion-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-cn);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: left;
+  transition: var(--transition-fast);
+}
+.accordion-trigger:hover { color: var(--wall); }
+.accordion-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.2s ease;
+  color: var(--text-muted);
+}
+.accordion-item[data-state="open"] .accordion-icon {
+  transform: rotate(180deg);
+  color: var(--wall);
+}
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.25s ease;
+  opacity: 0;
+}
+.accordion-item[data-state="open"] .accordion-content { opacity: 1; }
+.accordion-content-inner { padding: 0 20px 20px; }
+
+/* ---------- Alert Dialog ---------- */
+.alert-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(45,52,54,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease forwards;
+}
+.alert-dialog-content {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  width: 440px;
+  max-width: 90vw;
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+  animation: dialogIn 0.25s ease forwards;
+}
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+@keyframes dialogIn { from{opacity:0;transform:scale(0.96) translateY(-8px)} to{opacity:1;transform:scale(1) translateY(0)} }
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: var(--nav-height);
+    left: 0; right: 0;
+    background: var(--bg-base);
+    flex-direction: column;
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 10px 0; margin-left: 0; width: 100%; }
+  .nav-links .nav-admin {
+    margin-left: 0;
+    margin-top: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .nav-mobile-toggle { display: flex; }
+  .footer-inner { flex-direction: column; gap: 8px; text-align: center; }
+}
+
+/* ---------- 图片画廊网格（media-gallery-grid） ---------- */
+.media-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.gallery-item {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-elevated);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.03);
+  box-shadow: var(--shadow-sm);
+}
+
+.gallery-item img,
+.gallery-item video {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-desc {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  line-height: 1.5;
+}
+
+.gallery-title {
+  font-family: var(--font-cn);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.gallery-empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 40px;
+}
+
+/* 视频嵌入卡片 */
+.video-embed-card {
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  margin-bottom: 32px;
+  transition: var(--transition);
+}
+.video-embed-card:hover {
+  box-shadow: var(--shadow-sm);
+}
+.video-embed-card .video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+.video-embed-card .video-wrapper iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.video-embed-card .video-caption {
+  padding: 12px 16px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.video-embed-card .video-caption::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--creek);
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .media-gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  /* 移动端：遮罩更高，背景图几乎不可见 */
+  body::before {
+    background:
+      linear-gradient(
+        135deg,
+        rgba(251, 247, 240, 0.97) 0%,
+        rgba(251, 247, 240, 0.95) 100%
+      ),
+      url("/uploads/longtan_cri_1.jpg") right bottom / 70% auto no-repeat fixed;
+  }
+}
+
+@media (max-width: 480px) {
+  .media-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========== 侧边导览 ========== */
+.page-sidenav {
+  position: fixed;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 22px;
+}
+
+.page-sidenav-dot {
+  display: block;
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.page-sidenav-dot:hover,
+.page-sidenav-dot.active {
+  background: var(--wall);
+  width: 32px;
+  height: 5px;
+  border-radius: 3px;
+}
+
+.page-sidenav-dot .sidenav-label {
+  position: absolute;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  padding: 4px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--border-subtle);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+.page-sidenav-dot:hover .sidenav-label,
+.page-sidenav-dot.active .sidenav-label {
+  opacity: 1;
+}
+
+@media (max-width: 1100px) {
+  .page-sidenav { display: none; }
+}

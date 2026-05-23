@@ -1,0 +1,170 @@
+{
+  "contents": {
+    "index_subtitle": "",
+    "index_en": "Longtan Village · A Digital Archive",
+    "index_background": "在福建屏南的群山深处，六百载黄酒香与四百年四平戏共振。我们通过数字孪生与跨界艺术，让夯土墙间的古老灵魂在当代语境中重获新生。",
+    "wine_intro": "屏南黄酒酿造技艺已传承六百余年，以高山晚米、红粬和清泉为原料，经浸米、蒸饭、摊凉、加粬、入坛等工序，酿出琥珀色的甘醇美酒。",
+    "opera_intro": "四平戏，国家级非物质文化遗产，明代弋阳腔遗脉。其唱腔高亢粗犷、表演古朴生动，被誉为「中国戏剧活化石」。",
+    "music_subtitle": "从黄酒酒缸的自然声到四平戏的苍劲唱腔，我们将古老的声音基因注入现代艺术创作，探索非遗的潮流化新表达",
+    "music_value": "通过现代艺术跨界的创新路径，我们将屏南龙潭的非遗文化从\"博物馆里的展品\"转化为\"年轻人愿意听、愿意分享、愿意参与\"的潮流内容。",
+    "index_concept": "我们相信，非遗保护的最终目的不是\"封存\"，而是\"激活\"。项目以数字化技术为手段，以年轻化为表达，将屏南龙潭的黄酒酿造与四平戏曲从\"博物馆展品\"转化为\"可传播、可体验、可共创\"的文化新生态。",
+    "index_value": "当传统非遗遇见数字技术与青年创意，古老的文化不再是被保护的遗产，而是驱动乡村可持续发展的核心力量。龙潭模式证明：文化自信，来自对传统的尊重与对创新的勇气。",
+    "heritage_subtitle": "深扎屏南龙潭的文化土壤，溯源黄酒与四平戏的历史脉络与传承价值，为数字化年轻化创新提供坚实的文化根基",
+    "heritage_wine_desc": "龙潭村位于屏南县东南部，自古便是闽东闻名的\"酒乡\"。龙潭黄酒的酿造历史可追溯至明代，距今已有六百余年。先民利用本地优质山泉水和糯米，结合独特的古法酿造工艺，酿出了色如琥珀、醇香绵长的黄酒。",
+    "heritage_opera_desc": "四平戏是屏南县最具代表性的地方戏曲剧种，起源于明代中叶，由弋阳腔演变而来，至今已有四百多年历史。它保留了明代南戏的诸多特征，唱腔高亢嘹亮、节奏鲜明，被戏曲学界誉为\"中国戏曲的活化石\"。"
+  },
+  "uploads": [
+    {
+      "id": "ea09b04c6fec",
+      "original_name": "longtan_village_1.JPG",
+      "filename": "longtan_village_1.JPG",
+      "url": "/uploads/longtan_village_1.JPG",
+      "type": "image",
+      "category": "general",
+      "description": "龙潭村古民居群（人民网）",
+      "upload_time": "2026-05-23 11:40:09"
+    },
+    {
+      "id": "5d817281a848",
+      "original_name": "longtan_village_2.jpg",
+      "filename": "longtan_village_2.jpg",
+      "url": "/uploads/longtan_village_2.jpg",
+      "type": "image",
+      "category": "general",
+      "description": "龙潭村全景（人民网）",
+      "upload_time": "2026-05-23 11:40:09"
+    },
+    {
+      "id": "dc68b41531dd",
+      "original_name": "longtan_cri_1.jpg",
+      "filename": "longtan_cri_1.jpg",
+      "url": "/uploads/longtan_cri_1.jpg",
+      "type": "image",
+      "category": "general",
+      "description": "龙潭村航拍（国际在线）",
+      "upload_time": "2026-05-23 11:40:09"
+    },
+    {
+      "id": "116fdfdf9850",
+      "original_name": "longtan_cri_2.jpg",
+      "filename": "longtan_cri_2.jpg",
+      "url": "/uploads/longtan_cri_2.jpg",
+      "type": "image",
+      "category": "general",
+      "description": "龙潭村黄墙黛瓦（国际在线）",
+      "upload_time": "2026-05-23 11:40:09"
+    },
+    {
+      "id": "dd8fa5644d76",
+      "original_name": "longtan_cri_3.jpg",
+      "filename": "longtan_cri_3.jpg",
+      "url": "/uploads/longtan_cri_3.jpg",
+      "type": "image",
+      "category": "general",
+      "description": "龙潭村古宅（国际在线）",
+      "upload_time": "2026-05-23 11:40:09"
+    },
+    {
+      "id": "ae066335bcb9",
+      "original_name": "longtan_cri_4.jpg",
+      "filename": "longtan_cri_4.jpg",
+      "url": "/uploads/longtan_cri_4.jpg",
+      "type": "image",
+      "category": "general",
+      "description": "龙潭村山水（国际在线）",
+      "upload_time": "2026-05-23 11:40:09"
+    },
+    {
+      "id": "88ea48600850",
+      "original_name": "wine_ndww_1.jpg",
+      "filename": "wine_ndww_1.jpg",
+      "url": "/uploads/wine_ndww_1.jpg",
+      "type": "image",
+      "category": "wine",
+      "description": "黄酒酒窖（宁德网）",
+      "upload_time": "2026-05-23 11:40:09"
+    },
+    {
+      "id": "d95003a37c00",
+      "original_name": "wine_ndww_2.jpg",
+      "filename": "wine_ndww_2.jpg",
+      "url": "/uploads/wine_ndww_2.jpg",
+      "type": "image",
+      "category": "wine",
+      "description": "黄酒酿造（宁德网）",
+      "upload_time": "2026-05-23 11:40:09"
+    },
+    {
+      "id": "652a85a6b699",
+      "original_name": "opera_cctv_1.jpg",
+      "filename": "opera_cctv_1.jpg",
+      "url": "/uploads/opera_cctv_1.jpg",
+      "type": "image",
+      "category": "opera",
+      "description": "四平戏表演（央视）",
+      "upload_time": "2026-05-23 11:40:09"
+    },
+    {
+      "id": "e69cbfec8cf6",
+      "original_name": "opera_cctv_2.jpg",
+      "filename": "opera_cctv_2.jpg",
+      "url": "/uploads/opera_cctv_2.jpg",
+      "type": "image",
+      "category": "opera",
+      "description": "四平戏剧照（央视）",
+      "upload_time": "2026-05-23 11:40:09"
+    },
+    {
+      "id": "44c722e80c3a",
+      "original_name": "Young_musicians_performing_fus_2026-05-23T03-29-00.png",
+      "filename": "Young_musicians_performing_fus_2026-05-23T03-29-00.png",
+      "url": "/uploads/Young_musicians_performing_fus_2026-05-23T03-29-00.png",
+      "type": "image",
+      "category": "music",
+      "description": "音乐跨界创新",
+      "upload_time": "2026-05-23 11:40:09"
+    }
+  ],
+  "heritage_items": [],
+  "music_items": [],
+  "music_festival": {
+    "title": "龙潭重声音乐节",
+    "subtitle": "LONGTAN RESONANCE FESTIVAL",
+    "founded": "2019",
+    "philosophy": "人人都是音乐人，敢唱就是歌。",
+    "description": "自2019年起，龙潭村以\"人人都是音乐人\"为旗号，在每年夏季举办重声音乐节——一个打破舞台界限、让村民与艺术家同台共振的乡村音乐事件。",
+    "editions": "3+",
+    "musicians": "200+",
+    "original_works": "20+",
+    "images": [
+      {
+        "file": "music_fest_20_e145d5.png",
+        "desc": "龙潭重声音乐节 · 演出现场"
+      },
+      {
+        "file": "music_fest_26_dc655d.png",
+        "desc": "龙潭重声音乐节 · 全景"
+      },
+      {
+        "file": "music_fest_07_2a1979.png",
+        "desc": "现场演出"
+      },
+      {
+        "file": "music_fest_11_4964ea.png",
+        "desc": "乐队演奏"
+      },
+      {
+        "file": "music_fest_13_020e38.png",
+        "desc": "古村舞台"
+      },
+      {
+        "file": "music_fest_22_9830ec.png",
+        "desc": "溪边演出"
+      },
+      {
+        "file": "music_fest_30_ef8cc4.png",
+        "desc": "即兴演奏"
+      }
+    ]
+  }
+}
