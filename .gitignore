@@ -24,3 +24,10 @@ Thumbs.db
 
 # Uploads (keep git history but friendly)
 uploads/original_*/
+
+# Temp files
+*.bak
+*.log
+check_*.py
+fix_*.py
+nul
