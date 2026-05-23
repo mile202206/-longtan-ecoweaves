@@ -155,6 +155,23 @@ def uploaded_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
+# ==================== API：上传文件列表 ====================
+
+@app.route('/api/uploads', methods=['GET'])
+def get_uploads():
+    """获取上传文件列表（可选 category 筛选）"""
+    try:
+        data = load_data()
+        uploads = data.get('uploads', [])
+        category = request.args.get('category', '').strip()
+        if category:
+            uploads = [u for u in uploads if u.get('category') == category]
+        return jsonify(uploads)
+    except Exception as e:
+        print(f"[ERROR] 获取上传文件列表失败: {e}")
+        return jsonify({'error': '获取数据失败'}), 500
+
+
 # ==================== API：文件上传 ====================
 
 @app.route('/api/upload', methods=['POST'])
