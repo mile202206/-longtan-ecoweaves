@@ -27,6 +27,20 @@ if not errorlevel 1 (
     goto :found_python
 )
 
+:: WorkBuddy 托管 Python (这台电脑)
+set "WB_PYTHON=%USERPROFILE%\.workbuddy\binaries\python\envs\default\Scripts\python.exe"
+if exist "%WB_PYTHON%" (
+    set "PYTHON=%WB_PYTHON%"
+    goto :found_python
+)
+
+:: WorkBuddy 托管 Python (备选路径)
+set "WB_PYTHON2=%USERPROFILE%\.workbuddy\binaries\python\versions\3.13.12\python.exe"
+if exist "%WB_PYTHON2%" (
+    set "PYTHON=%WB_PYTHON2%"
+    goto :found_python
+)
+
 echo [错误] 未检测到 Python！请先安装 Python 3。
 echo        下载地址: https://www.python.org/downloads/
 echo        安装时务必勾选 "Add Python to PATH"
