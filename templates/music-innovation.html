@@ -472,6 +472,17 @@
     @media (max-width: 640px) {
       .music-hero-title { font-size: 2rem; }
     }
+
+    /* ===== SVG 山水动画 — 现代艺术页专属 ===== */
+    .svganim-pine-far-1,
+    .svganim-pine-far-2,
+    .svganim-pine-near-1 { transform-origin: bottom center; }
+    .svganim-wave-1 { animation: waveBreathe 4s ease-in-out infinite; transform-origin: center center; }
+    .svganim-wave-2 { animation: waveBreathe2 5s ease-in-out 1s infinite; transform-origin: center center; }
+    .svganim-wave-3 { animation: waveBreathe 4.5s ease-in-out 2s infinite; transform-origin: center center; }
+    .svganim-note-1 { animation: noteFloat 3.5s ease-in-out infinite; }
+    .svganim-note-2 { animation: noteFloat 4s ease-in-out 1.2s infinite; }
+    .svganim-note-3 { animation: noteFloat 3.8s ease-in-out 2.4s infinite; }
   </style>
 </head>
 <body>
@@ -506,24 +517,28 @@
     <div class="music-illustration">
       <svg viewBox="0 0 480 320" fill="none" xmlns="http://www.w3.org/2000/svg">
         <!-- 云雾 -->
-        <path d="M15 75 Q65 70 105 72 Q150 78 190 70" stroke="rgba(255,255,255,0.16)" stroke-width="0.8" fill="none"/>
-        <ellipse cx="280" cy="95" rx="45" ry="5" fill="rgba(255,255,255,0.05)"/>
+        <path class="svganim-cloud" d="M15 75 Q65 70 105 72 Q150 78 190 70" stroke="rgba(255,255,255,0.16)" stroke-width="0.8" fill="none"/>
+        <ellipse class="svganim-cloud-slow" cx="280" cy="95" rx="45" ry="5" fill="rgba(255,255,255,0.05)"/>
         <!-- 第一层远山 -->
-        <path d="M0 125 Q35 108 75 118 Q115 100 165 113 Q205 103 255 110 Q305 98 355 106 Q405 100 455 104 Q480 102 480 320 L0 320Z" fill="rgba(91,154,142,0.07)" stroke="rgba(91,154,142,0.04)" stroke-width="0.5"/>
+        <path class="svganim-mountain-1" d="M0 125 Q35 108 75 118 Q115 100 165 113 Q205 103 255 110 Q305 98 355 106 Q405 100 455 104 Q480 102 480 320 L0 320Z" fill="rgba(91,154,142,0.07)" stroke="rgba(91,154,142,0.04)" stroke-width="0.5"/>
         <!-- 第二层远山 -->
-        <path d="M0 158 Q45 138 95 150 Q140 132 200 145 Q250 130 310 140 Q370 128 430 134 Q465 128 480 131 L480 320 L0 320Z" fill="rgba(91,154,142,0.12)" stroke="rgba(91,154,142,0.08)" stroke-width="0.7"/>
+        <path class="svganim-mountain-2" d="M0 158 Q45 138 95 150 Q140 132 200 145 Q250 130 310 140 Q370 128 430 134 Q465 128 480 131 L480 320 L0 320Z" fill="rgba(91,154,142,0.12)" stroke="rgba(91,154,142,0.08)" stroke-width="0.7"/>
         <!-- 远景松树 -->
+        <g class="svganim-pine-far-1">
         <line x1="68" y1="145" x2="68" y2="118" stroke="rgba(74,124,89,0.14)" stroke-width="1.1"/>
         <ellipse cx="68" cy="115" rx="7" ry="10" fill="rgba(74,124,89,0.07)"/>
+        </g>
+        <g class="svganim-pine-far-2">
         <line x1="118" y1="150" x2="118" y2="122" stroke="rgba(74,124,89,0.11)" stroke-width="1"/>
         <ellipse cx="118" cy="119" rx="6" ry="9" fill="rgba(74,124,89,0.06)"/>
+        </g>
         <!-- 第三层山 -->
-        <path d="M0 188 Q58 168 128 180 Q188 163 258 175 Q318 162 378 170 Q428 163 480 166 L480 320 L0 320Z" fill="rgba(74,124,89,0.10)" stroke="rgba(74,124,89,0.07)" stroke-width="0.8"/>
+        <path class="svganim-mountain-3" d="M0 188 Q58 168 128 180 Q188 163 258 175 Q318 162 378 170 Q428 163 480 166 L480 320 L0 320Z" fill="rgba(74,124,89,0.10)" stroke="rgba(74,124,89,0.07)" stroke-width="0.8"/>
         <!-- 第四层近山 -->
-        <path d="M0 218 Q68 200 148 212 Q218 195 288 205 Q358 195 428 200 Q463 194 480 197 L480 320 L0 320Z" fill="rgba(74,124,89,0.14)" stroke="rgba(74,124,89,0.10)" stroke-width="0.9"/>
+        <path class="svganim-mountain-4" d="M0 218 Q68 200 148 212 Q218 195 288 205 Q358 195 428 200 Q463 194 480 197 L480 320 L0 320Z" fill="rgba(74,124,89,0.14)" stroke="rgba(74,124,89,0.10)" stroke-width="0.9"/>
         <!-- 溪流 -->
-        <path d="M0 268 Q48 262 98 266 Q148 270 198 264 Q248 258 298 264 Q348 269 395 263 Q430 258 480 264" stroke="rgba(91,154,142,0.18)" stroke-width="1" fill="none"/>
-        <path d="M0 276 Q55 272 120 275 Q180 278 238 273 Q288 276 348 272 Q400 274 455 270 Q474 268 480 272" stroke="rgba(91,154,142,0.09)" stroke-width="0.6" fill="none"/>
+        <path class="svganim-creek-upper" d="M0 268 Q48 262 98 266 Q148 270 198 264 Q248 258 298 264 Q348 269 395 263 Q430 258 480 264" stroke="rgba(91,154,142,0.18)" stroke-width="1" fill="none"/>
+        <path class="svganim-creek-lower" d="M0 276 Q55 272 120 275 Q180 278 238 273 Q288 276 348 272 Q400 274 455 270 Q474 268 480 272" stroke="rgba(91,154,142,0.09)" stroke-width="0.6" fill="none"/>
         <!-- 石拱桥 -->
         <path d="M175 264 Q198 246 220 264" stroke="rgba(45,52,54,0.16)" stroke-width="1.3" fill="rgba(91,154,142,0.05)"/>
         <line x1="175" y1="264" x2="170" y2="274" stroke="rgba(45,52,54,0.10)" stroke-width="0.8"/>
@@ -538,22 +553,24 @@
         <rect x="326" y="238" width="8" height="17" rx="0.5" fill="rgba(200,150,74,0.18)"/>
         <rect x="344" y="238" width="7" height="7" rx="0.5" fill="rgba(200,150,74,0.12)"/>
         <!-- 近景松树 -->
+        <g class="svganim-pine-near-1">
         <line x1="415" y1="264" x2="413" y2="194" stroke="rgba(45,52,54,0.18)" stroke-width="1.8"/>
         <path d="M413 198 L400 213 L409 211 L396 228" stroke="rgba(74,124,89,0.20)" stroke-width="0.9" fill="none"/>
         <path d="M413 203 L427 216 L417 214 L430 230" stroke="rgba(74,124,89,0.18)" stroke-width="0.9" fill="none"/>
         <ellipse cx="413" cy="192" rx="10" ry="13" fill="rgba(74,124,89,0.09)"/>
+        </g>
         <!-- 暖阳 -->
-        <circle cx="400" cy="58" r="44" fill="rgba(200,150,74,0.11)"/>
-        <circle cx="400" cy="58" r="27" fill="rgba(200,150,74,0.07)"/>
-        <circle cx="400" cy="58" r="13" fill="rgba(200,150,74,0.05)"/>
+        <circle class="svganim-sun-outer" cx="400" cy="58" r="44" fill="rgba(200,150,74,0.11)"/>
+        <circle class="svganim-sun-mid" cx="400" cy="58" r="27" fill="rgba(200,150,74,0.07)"/>
+        <circle class="svganim-sun-inner" cx="400" cy="58" r="13" fill="rgba(200,150,74,0.05)"/>
         <!-- 音波线条（保留创新特色） -->
-        <path d="M55 195 Q78 172 103 195 Q126 218 150 195 Q173 172 198 195" stroke="rgba(91,154,142,0.25)" stroke-width="2" fill="none"/>
-        <path d="M95 218 Q118 196 143 218 Q166 240 190 218 Q213 196 238 218" stroke="rgba(200,150,74,0.20)" stroke-width="1.5" fill="none"/>
-        <path d="M155 207 Q178 185 203 207 Q226 229 250 207 Q273 185 298 207" stroke="rgba(91,154,142,0.18)" stroke-width="1.5" fill="none"/>
+        <path class="svganim-wave-1" d="M55 195 Q78 172 103 195 Q126 218 150 195 Q173 172 198 195" stroke="rgba(91,154,142,0.25)" stroke-width="2" fill="none"/>
+        <path class="svganim-wave-2" d="M95 218 Q118 196 143 218 Q166 240 190 218 Q213 196 238 218" stroke="rgba(200,150,74,0.20)" stroke-width="1.5" fill="none"/>
+        <path class="svganim-wave-3" d="M155 207 Q178 185 203 207 Q226 229 250 207 Q273 185 298 207" stroke="rgba(91,154,142,0.18)" stroke-width="1.5" fill="none"/>
         <!-- 音符 -->
-        <text x="115" y="165" font-size="26" fill="rgba(91,154,142,0.3)">♪</text>
-        <text x="195" y="178" font-size="20" fill="rgba(200,150,74,0.25)">♫</text>
-        <text x="255" y="152" font-size="24" fill="rgba(91,154,142,0.28)">♪</text>
+        <text class="svganim-note-1" x="115" y="165" font-size="26" fill="rgba(91,154,142,0.3)">♪</text>
+        <text class="svganim-note-2" x="195" y="178" font-size="20" fill="rgba(200,150,74,0.25)">♫</text>
+        <text class="svganim-note-3" x="255" y="152" font-size="24" fill="rgba(91,154,142,0.28)">♪</text>
       </svg>
     </div>
   </header>

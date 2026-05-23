@@ -509,6 +509,168 @@ body::before {
 @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 @keyframes dialogIn { from{opacity:0;transform:scale(0.96) translateY(-8px)} to{opacity:1;transform:scale(1) translateY(0)} }
 
+/* ========== SVG 山水插画动效 ========== */
+
+/* --- 云雾 --- */
+@keyframes cloudDrift {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(12px); }
+  100% { transform: translateX(0); }
+}
+@keyframes cloudDriftSlow {
+  0%   { transform: translateX(0); }
+  50%  { transform: translateX(8px); }
+  100% { transform: translateX(0); }
+}
+
+/* --- 暖阳 --- */
+@keyframes sunGlow {
+  0%   { opacity: 0.7; transform: scale(1); }
+  50%  { opacity: 1; transform: scale(1.06); }
+  100% { opacity: 0.7; transform: scale(1); }
+}
+
+/* --- 溪流 --- */
+@keyframes creekShimmer {
+  0%   { opacity: 0.6; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* --- 远山 --- */
+@keyframes mountainBreathe {
+  0%   { opacity: 0.7; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+/* --- 松树微摇 --- */
+@keyframes pineSway {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(0.3deg); }
+  75%  { transform: rotate(-0.3deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* --- 竹子轻摆 --- */
+@keyframes bambooSway {
+  0%   { transform: rotate(0deg); }
+  50%  { transform: rotate(0.5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* --- 首页·酒坛 --- */
+@keyframes jarWobble {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(1.5deg); }
+  75%  { transform: rotate(-1deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes jarGlow {
+  0%   { opacity: 0.22; }
+  50%  { opacity: 0.38; }
+  100% { opacity: 0.22; }
+}
+
+/* --- 非遗页·石板路 & 古厝窗 --- */
+@keyframes stonePathShine {
+  0%   { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -14; }
+}
+@keyframes windowGlow {
+  0%   { opacity: 0.14; }
+  50%  { opacity: 0.28; }
+  100% { opacity: 0.14; }
+}
+
+/* --- 现代艺术·音波 & 音符 --- */
+@keyframes waveBreathe {
+  0%   { transform: scaleY(1); opacity: 0.25; }
+  50%  { transform: scaleY(1.08); opacity: 0.42; }
+  100% { transform: scaleY(1); opacity: 0.25; }
+}
+@keyframes waveBreathe2 {
+  0%   { transform: scaleY(1); opacity: 0.20; }
+  50%  { transform: scaleY(1.06); opacity: 0.36; }
+  100% { transform: scaleY(1); opacity: 0.20; }
+}
+@keyframes noteFloat {
+  0%   { transform: translateY(0) scale(1); opacity: 0.28; }
+  50%  { transform: translateY(-6px) scale(1.08); opacity: 0.44; }
+  100% { transform: translateY(0) scale(1); opacity: 0.28; }
+}
+
+/* ========== 动画 class 绑定（共享） ========== */
+
+/* 基础 will-change */
+.svganim-cloud,
+.svganim-cloud-slow,
+.svganim-sun-outer,
+.svganim-sun-mid,
+.svganim-sun-inner,
+.svganim-creek-upper,
+.svganim-creek-lower,
+.svganim-mountain-1,
+.svganim-mountain-2,
+.svganim-mountain-3,
+.svganim-mountain-4,
+.svganim-mountain-5,
+.svganim-pine-far-1,
+.svganim-pine-far-2,
+.svganim-pine-far-3,
+.svganim-pine-near-1,
+.svganim-pine-near-2,
+.svganim-bamboo-1,
+.svganim-bamboo-2,
+.svganim-bamboo-3,
+.svganim-jar-body,
+.svganim-jar-rim,
+.svganim-jar-mouth,
+.svganim-stone-path-1,
+.svganim-stone-path-2,
+.svganim-window-glow,
+.svganim-window-split,
+.svganim-wave-1,
+.svganim-wave-2,
+.svganim-wave-3,
+.svganim-note-1,
+.svganim-note-2,
+.svganim-note-3 {
+  will-change: transform, opacity;
+}
+
+/* 云雾 */
+.svganim-cloud     { animation: cloudDrift 8s ease-in-out infinite; }
+.svganim-cloud-slow{ animation: cloudDriftSlow 12s ease-in-out infinite; }
+
+/* 暖阳 */
+.svganim-sun-outer { animation: sunGlow 6s ease-in-out infinite; }
+.svganim-sun-mid   { animation: sunGlow 6s ease-in-out 1s infinite; }
+.svganim-sun-inner { animation: sunGlow 6s ease-in-out 2s infinite; }
+
+/* 溪流 */
+.svganim-creek-upper{ animation: creekShimmer 5s ease-in-out infinite; }
+.svganim-creek-lower{ animation: creekShimmer 5s ease-in-out 1.5s infinite; }
+
+/* 山层 */
+.svganim-mountain-1{ animation: mountainBreathe 10s ease-in-out infinite; }
+.svganim-mountain-2{ animation: mountainBreathe 10s ease-in-out 1s infinite; }
+.svganim-mountain-3{ animation: mountainBreathe 10s ease-in-out 2s infinite; }
+.svganim-mountain-4{ animation: mountainBreathe 10s ease-in-out 3s infinite; }
+.svganim-mountain-5{ animation: mountainBreathe 10s ease-in-out 4s infinite; }
+
+/* 松树 (transform-origin 在各页内联 style 设置) */
+.svganim-pine-far-1 { animation: pineSway 7s ease-in-out infinite; }
+.svganim-pine-far-2 { animation: pineSway 7s ease-in-out 1.5s infinite; }
+.svganim-pine-far-3 { animation: pineSway 7s ease-in-out 3s infinite; }
+.svganim-pine-near-1{ animation: pineSway 9s ease-in-out infinite; }
+.svganim-pine-near-2{ animation: pineSway 9s ease-in-out 2s infinite; }
+
+/* 竹子 */
+.svganim-bamboo-1  { animation: bambooSway 8s ease-in-out infinite; }
+.svganim-bamboo-2  { animation: bambooSway 8s ease-in-out 2.5s infinite; }
+.svganim-bamboo-3  { animation: bambooSway 8s ease-in-out 5s infinite; }
+
 /* ---------- 响应式 ---------- */
 @media (max-width: 768px) {
   .nav-links {
