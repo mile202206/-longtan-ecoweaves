@@ -110,39 +110,6 @@
       text-align: center;
     }
 
-    /* ============ 默认账号提示 ============ */
-    .login-hint {
-      margin: 24px auto 20px;
-      padding: 12px 16px;
-      background: var(--creek-soft);
-      border: 1px solid rgba(91,154,142,0.12);
-      border-radius: 10px;
-      text-align: center;
-    }
-    .login-hint-label {
-      font-size: 0.65rem;
-      letter-spacing: 2px;
-      color: var(--creek);
-      text-transform: uppercase;
-      margin-bottom: 8px;
-      font-weight: 500;
-    }
-    .login-hint-row {
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-      line-height: 1.7;
-    }
-    .login-hint-row code {
-      font-family: 'Inter', monospace;
-      background: rgba(255,255,255,0.7);
-      padding: 2px 8px;
-      border-radius: 4px;
-      font-size: 0.85rem;
-      color: var(--wall);
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
     /* ============ 表单 ============ */
     .login-form { display: flex; flex-direction: column; gap: 16px; }
 
@@ -328,15 +295,6 @@
       龙潭<span>后台</span>
     </h1>
     <div class="login-subtitle">Longtan Village · Operations</div>
-
-    <!-- 默认账号提示 -->
-    <div class="login-hint">
-      <div class="login-hint-label">演示账号</div>
-      <div class="login-hint-row">
-        账号：<code>ecoweaves</code><br>
-        密码：<code>Longtan@2024</code>
-      </div>
-    </div>
 
     {% if error %}
     <div class="login-error show">{{ error }}</div>
