@@ -120,13 +120,76 @@
       "filename": "Young_musicians_performing_fus_2026-05-23T03-29-00.png",
       "url": "/uploads/Young_musicians_performing_fus_2026-05-23T03-29-00.png",
       "type": "image",
-      "category": "music",
+      "category": "general",
       "description": "音乐跨界创新",
       "upload_time": "2026-05-23 11:40:09"
     }
   ],
-  "heritage_items": [],
-  "music_items": [],
+  "heritage_items": [
+    {
+      "id": "wine_01",
+      "category": "wine",
+      "title": "龙潭黄酒 · 古法酿造",
+      "subtitle": "600+ Years of Brewing Wisdom",
+      "desc": "龙潭黄酒酿造技艺传承六百余年，以高山晚米、红粬、山泉为原料，经浸米、蒸饭、摊凉、加粬、入坛、发酵等十二道工序，酿出琥珀色的甘醇美酒。",
+      "image": "/uploads/wine_ndww_1.jpg",
+      "video_url": "https://www.bilibili.com/video/BV1GJ411x7h7",
+      "date": "明代至今"
+    },
+    {
+      "id": "wine_02",
+      "category": "wine",
+      "title": "黄酒博物馆 · 数字化展陈",
+      "subtitle": "Digital Museum of Huangjiu",
+      "desc": "我们将龙潭黄酒的酿造流程转化为可视化数字档案，通过3D建模还原古法酿造场景，让参观者沉浸式体验六百年酿造智慧。",
+      "image": "/uploads/wine_ndww_2.jpg",
+      "video_url": "",
+      "date": "2024"
+    },
+    {
+      "id": "opera_01",
+      "category": "opera",
+      "title": "四平戏 · 活化石重生",
+      "subtitle": "Siping Opera Reborn",
+      "desc": "四平戏距今已有四百余年历史，保留明代南戏诸多特征。我们通过动捕技术记录老艺人唱段身法，在虚拟空间复现古戏台神韵。",
+      "image": "/uploads/opera_cctv_1.jpg",
+      "video_url": "https://www.bilibili.com/video/BV1Ux411j7GL",
+      "date": "明代至今"
+    },
+    {
+      "id": "opera_02",
+      "category": "opera",
+      "title": "古戏台 · 数字孪生",
+      "subtitle": "Digital Twin of Ancient Stage",
+      "desc": "龙潭村现存多座古戏台，我们通过激光扫描与摄影测量技术，构建高精度3D数字孪生模型，实现全球范围内的虚拟漫游与戏曲观赏。",
+      "image": "/uploads/opera_cctv_2.jpg",
+      "video_url": "",
+      "date": "2024"
+    }
+  ],
+  "music_items": [
+    {
+      "id": "music_01",
+      "title": "龙潭重声音乐节",
+      "subtitle": "Longtan Resonance Festival",
+      "desc": "自2019年起，龙潭村以\"人人都是音乐人\"为旗号，每年夏季举办重声音乐节。乡村自然之声与城市现代音乐共振，让古村成为青年文化新地标。",
+      "image": "/uploads/Young_musicians_performing_fus_2026-05-23T03-29-00.png",
+      "video_url": "https://www.bilibili.com/video/BV1gK411T7ZJ",
+      "date": "2019-至今"
+    },
+    {
+      "id": "music_02",
+      "title": "在地声音IP · 龙潭 mapping",
+      "subtitle": "Local Sound IP · Mapping",
+      "desc": "采集龙潭村环境音——黄酒发酵的气泡声、四平戏的高亢唱腔、溪流鸟鸣——与现代电子乐融合，创作具有在地辨识度的声音IP。",
+      "image": "/uploads/longtan_village_1.JPG",
+      "video_url": "",
+      "date": "2024"
+    }
+  ],
+  "creative_items": [],
+  "specialty_items": [],
+  "space_items": [],
   "music_festival": {
     "title": "龙潭重声音乐节",
     "subtitle": "LONGTAN RESONANCE FESTIVAL",
@@ -138,27 +201,27 @@
     "original_works": "20+",
     "images": [
       {
-        "file": "music_fest_20_e145d5.png",
+        "file": "music_fest_07_2a1979.png",
         "desc": "龙潭重声音乐节 · 演出现场"
       },
       {
-        "file": "music_fest_26_dc655d.png",
+        "file": "music_fest_11_4964ea.png",
         "desc": "龙潭重声音乐节 · 全景"
       },
       {
-        "file": "music_fest_07_2a1979.png",
+        "file": "music_fest_13_020e38.png",
         "desc": "现场演出"
       },
       {
-        "file": "music_fest_11_4964ea.png",
+        "file": "music_fest_20_e145d5.png",
         "desc": "乐队演奏"
       },
       {
-        "file": "music_fest_13_020e38.png",
+        "file": "music_fest_22_9830ec.png",
         "desc": "古村舞台"
       },
       {
-        "file": "music_fest_22_9830ec.png",
+        "file": "music_fest_26_dc655d.png",
         "desc": "溪边演出"
       },
       {
@@ -168,10 +231,10 @@
     ]
   },
   "page_views": {
-    "music_innovation": 7,
-    "creative": 5,
+    "music_innovation": 8,
+    "creative": 6,
     "offline_space": 7,
-    "index": 10,
-    "heritage": 9
+    "index": 14,
+    "heritage": 10
   }
 }
